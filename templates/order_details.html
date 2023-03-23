@@ -1,0 +1,165 @@
+{% extends 'base.html' %} {% load static %} {% block style %}
+<style>
+  .mydiv {
+    width: 75vw !important;
+    height: 80vh!important;
+    display: flex;
+    justify-content: space-between;
+    text-align: unset !important;
+    font-size: 1.3rem;
+    font-weight: 400 !important;
+    padding-left: 5%;
+    padding:2%;
+  }
+
+  i {
+    color: #edc93b;
+    font-size: 1rem;
+  }
+</style>
+
+{% endblock style %}
+
+{% block navlogo %}
+<a class="navbar-brand" href="{% url 'homeid' id %}">
+  <img src="{% static './images/logo.png' %}" class="img-fluid" alt="logo" />
+</a>
+
+{% endblock navlogo %}
+
+{% block navbar %}
+
+<li class="nav-item">
+  <a class="nav-link {% if request.path == '/'|add:id %}active {% endif %}" aria-current="page"
+    href="{% url 'homeid' id %}">Home</a>
+</li>
+
+
+<li class="nav-item">
+  <a class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}" href="{% url 'aboutid' id%}">About</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link {% if request.path == '/services/'|add:id %}active {% endif %}"
+    href="{% url 'serviceid' id %}">Services</a>
+</li>
+
+
+
+<li class="nav-item">
+  <a class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
+    href="{% url 'staffsid' id%}">Staffs</a>
+</li>
+
+
+<li class="nav-item">
+  <a class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}" href="{% url 'blogid' id%}">Blogs</a>
+</li>
+
+
+
+<li class="nav-item">
+  <a class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
+    href="{% url 'travelid' id%}">Traindetails</a>
+</li>
+
+
+<li class="nav-item">
+
+  <a class="{% if request.path == '/hotellist/all/'|add:id  or request.path == '/hotellist/goa/'|add:id or request.path == '/hotellist/kerala/'|add:id or request.path == '/hotellist/jammu kashmir/'|add:id or request.path == '/hotellist/Rajasthan/'|add:id or request.path == '/hotellist/Himachal pradesh/'|add:id or request.path == '/hotellist/others/'|add:id  %}active{% endif %} nav-link " href="{% url 'hotellist' 'all' id %}">Hotels & resorts</a>
+</li>
+
+<li class="nav-item mt-3 mt-lg-0">
+
+  <a href="{{url}}" class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}">Dashboard</a>
+</li>
+
+{% endblock navbar %}
+
+
+
+{% block content1 %}
+<div class="dashboard">
+  <div class="mt-5 mb-3 w-100 text-center section-title">
+    <h3 class="myuser">
+      Order details for {{maindata.firstname}} {{ maindata.lastname}}
+    </h3>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="mydiv p-1 px-3">
+          <dl class="row">
+            <dt class="col-sm-3">Customer name :</dt>
+            <dt class="col-sm-9">
+              {{maindata.firstname }} {{maindata.lastname}}
+            </dt>
+            <hr />
+            <dt class="col-sm-3">Customer email :</dt>
+            <dt class="col-sm-9">{{maindata.email }}</dt>
+            <hr />
+            <dt class="col-sm-3">Contact details :</dt>
+            <dt class="col-sm-9">{{maindata.contact_no }}</dt>
+            <hr />
+            <dt class="col-sm-3">NO of people :</dt>
+            <dt class="col-sm-9">{{maindata.no_people }}</dt>
+            <hr />
+            <dt class="col-sm-3">NO of rooms :</dt>
+            <dt class="col-sm-9">{{maindata.no_rooms }}</dt>
+            <hr />
+
+            <dt class="col-sm-3">Order Booked by :</dt>
+            <dt class="col-sm-9">{{maindata.username }}</dt>
+            <hr />
+            <dt class="col-sm-3">Hotel details :</dt>
+            <dt class="col-sm-9">
+              {{maindata.hotelname }} , {{maindata.city}} ,<br />{{maindata.state}}.
+            </dt>
+            <hr />
+
+            <dt class="col-sm-3">Date of bokings :</dt>
+            <dt class="col-sm-9">{{maindata.start }} - {{maindata.end}}</dt>
+            <hr />
+            <dt class="col-sm-3">Total cost :</dt>
+            <dt class="col-sm-9">Rs. {{cost}}</dt>
+
+           
+            
+           
+            <hr>
+            <dt class="col-sm-3">Payment status :</dt>
+            <dt class="col-sm-9">{{maindata.payment_status}}</dt>
+
+            {% if bool == True %}
+            <hr>
+            <dt class="col-sm-12">If you want you can pay now or at the time of checkin..</dt>
+           <dt class="col-sm-5"><a href="/payments/?session__id={{id}}&order_id={{order_id}}&cost={{cost}}" class="main-btn mt-2">payment link</a></dt> 
+            
+             
+            
+            
+            {% else %}
+            
+            {% endif %}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="container" />
+
+<div class="container text-center mt-5">
+  <h4>Back to dashboard page..</h4>
+  <a href="{{url}}" class="main-btn mt-4">Dashboard</a>
+</div>
+{% endblock content1 %}
+
+
+{% block javascript_files %}
+
+<script src="{% static 'js/main2.js' %}"></script>
+
+
+
+{% endblock javascript_files %}

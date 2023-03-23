@@ -1,0 +1,200 @@
+
+
+
+{% extends 'base.html' %}
+ {% load static %}
+ 
+ {% block style %}
+ 
+ {% endblock style %} 
+
+
+
+
+ {% block navlogo %}
+<a class="navbar-brand" href="{% url 'homeid' id %}">
+  <img
+    src="{% static './images/logo.png' %}"
+    class="img-fluid"
+    alt="logo"
+  />
+</a>
+
+{% endblock navlogo %}
+
+
+{% block navbar %}
+    
+<li class="nav-item">
+<a
+  class="nav-link {% if request.path == '/'|add:id %}active {% endif %}"
+  aria-current="page"
+  href="{% url 'homeid' id %}"
+  >Home</a
+>
+</li>
+
+
+<li class="nav-item">
+<a
+  class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}"
+  href="{% url 'aboutid' id%}"
+  >About</a
+>
+</li>
+
+<li class="nav-item">
+<a
+  class="nav-link {% if request.path == '/services/'|add:id %}active {% endif %}"
+  href="{% url 'serviceid' id %}"
+  >Services</a
+>
+</li>
+
+
+
+<li class="nav-item">
+<a
+  class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
+  href="{% url 'staffsid' id%}"
+  >Staffs</a
+>
+</li>
+
+
+<li class="nav-item">
+<a
+  class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}"
+  href="{% url 'blogid' id%}"
+  >Blogs</a
+>
+</li>
+
+
+
+<li class="nav-item">
+<a
+  class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
+  href="{% url 'travelid' id%}"
+  >Traindetails</a
+>
+</li>
+
+
+<li class="nav-item">
+<a
+  class="nav-link "
+  href="{% url 'logout' id %}"
+  >Logout</a
+>
+</li>
+
+<li class="nav-item mt-3 mt-lg-0">
+
+<a href="{{url}}" class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}">Dashboard</a>
+</li>
+
+{% endblock navbar %}
+
+
+
+
+{% block content1 %}
+
+{% if messages %}
+{% for message in messages %}
+
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong class="ms-4">{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+<div class="dashboard">
+  
+  <div class="mt-5 w-100 text-center section-title">
+    <h3 class="myuser">welcome {{un}}</h3>
+    
+   
+  </div>
+  <hr class="container mb-4">
+  <div class="text-center my-2">
+    <h4>Explore our all new deals and offers here ans get best discounts on your order ..</h4>
+    <a href="{{hotelurl}}" class="main-btn mt-4">Explore all</a>
+  </div>
+ 
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <h4 class="text-center mt-4">here is the list of your orders</h4>
+        
+        <div class="mydiv p-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">S no.</th>
+                <th scope="col">Customer name</th>
+               
+                <th scope="col">Contact no</th> 
+                <th scope="col">Payment sts</th> 
+                <th scope="col">view details</th>
+                <th scope="col">Delete orders</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in maindata %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{p.firstname}} {{p.lastname}}</td>
+            
+                <td>{{p.contact_no}}</td>
+                <td><b> {{p.payment_status |upper}}</b></td>
+                <td><a href="/details/?id1={{p.id}}&session__id={{id}}" class="main-btn">Details</a></td>
+
+                <td> <a class="main-btn " href="delete/?id1={{p.id}}&session__id={{id}}">Delete</a></td>
+
+              
+              </tr>
+              {% empty %}
+              <h4 class="text-center my-4">You have not done any bookings now.</h4>
+              <hr class="container">
+              {% endfor %}
+            </tbody>
+         
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="container text-center mt-5">
+  <div class="section-title my-2 text-center">
+    <h3 class="myuser"> Dear {{un}}</h3>
+  </div>
+  
+  <h4>How is your experience with our services your feedback is very important for us.</h4>
+  <h5>You can add your valuable feedback of your experiece with us in our blogs page your so that we can improve our services for you next time..</h5>
+  <a href="{{reviewurl}}" class="main-btn mt-4">add feedback</a>
+<br>
+  <a href="{{hotelurl}}" class="main-btn mt-4">Back to booking page</a>
+</div>
+
+
+{% endblock content1 %}
+
+{% block javascript_files %}
+
+<script src="{% static 'js/main2.js' %}"></script>
+
+
+{% endblock javascript_files %}
+
+
+ 
