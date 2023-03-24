@@ -33,7 +33,7 @@ def paymentpage(request):
             email = maindata.useremail
             pw = maindata.userpassword
             url = "/dashboard/{}".format(id)
-            data = {'id': id, 'url': url, 'un': un,'uemail':email,
+            data = {'id': id, 'url': url, 'un': un, 'uemail': email,
                     'pw': pw, 'cost': cost, 'oid': oid}
             return render(request, 'payment.html', data)
         try:
@@ -52,10 +52,11 @@ def paymentpage(request):
                 un = maindata.username
                 pw = maindata.userpassword
 
-                full_name = (maindata.firstname + maindata.lastname).upper()
+                full_name = (maindata.firstname +' '+ maindata.lastname).upper()
                 url = "/dashboard/{}".format(id)
 
-                data1 = Paymentdetail(username=uname, password=upass,useremail=email, order_no=order_no,total_cost=cost)
+                data1 = Paymentdetail(
+                    username=uname, password=upass, useremail=email, order_no=order_no, total_cost=cost)
                 data1.save()
                 Bookinghotel.objects.filter(
                     id=order_no).update(payment_status='paid')

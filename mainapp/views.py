@@ -40,7 +40,7 @@ def signup(request):
                 messages.warning(
                     request, 'username or email already exist select another !')
             else:
-                maindata = Login(username=un,email=email, password=pw )
+                maindata = Login(username=un, email=email, password=pw)
                 maindata.save()
                 messages.success(
                     request, 'you have registered succesfully, now you can login !')
@@ -74,8 +74,10 @@ def login(request):
             return render(request, 'login.html')
     return render(request, 'login.html')
 
+# first delete all the sessions using del command...
+# session.flush will delete all the cookies corresponding to the session key...
+# session.clear_expired will delete all the deleted data from the table....
 
-#  request.session['user_{}_uemail'.format(user.id)]=user.email
 
 def logout_user(request, id):
     if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session and 'user_{}_uemail'.format(id) not in request.session:
@@ -84,6 +86,7 @@ def logout_user(request, id):
         user = Login.objects.get(
             username=request.session.get('user_{}_uname'.format(id)))
         del request.session['user_{}_uname'.format(user.id)]
+        del request.session['user_{}_uemail'.format(user.id)]
         del request.session['user_{}_upass'.format(user.id)]
         request.session.flush()
         request.session.clear_expired()

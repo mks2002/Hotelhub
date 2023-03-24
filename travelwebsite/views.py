@@ -4,6 +4,7 @@
 
 
 # import all basic rendering and redirecting modules...
+from django.views.decorators.cache import never_cache
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -11,9 +12,6 @@ from django.shortcuts import render
 # requests module is used for dealing with api...
 import requests
 
-
-def homepage(request):
-    return render(request,'index.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -55,9 +53,12 @@ def travel(request):
     return render(request, "travel_details.html", data)
 
 
-from django.views.decorators.cache import never_cache
+#  path('', v4.homepage, name='home'),
+#  path('<id>', v4.homepageid, name='homeid'),
 
 
+def homepage(request):
+    return render(request, 'index.html')
 
 
 # from here all this are dynamic pages ....
@@ -70,6 +71,7 @@ def homepageid(request, id):
         data = {'id': id, 'url': url}
         return render(request, 'index2.html', data)
 
+
 @never_cache
 def aboutid(request, id):
     if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
@@ -78,6 +80,7 @@ def aboutid(request, id):
         url = "/dashboard/{}".format(id)
         data = {'id': id, 'url': url}
         return render(request, 'about2.html', data)
+
 
 @never_cache
 def servicesid(request, id):
@@ -88,6 +91,7 @@ def servicesid(request, id):
         data = {'id': id, 'url': url}
         return render(request, 'services2.html', data)
 
+
 @never_cache
 def staffsid(request, id):
     if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
@@ -96,6 +100,7 @@ def staffsid(request, id):
         url = "/dashboard/{}".format(id)
         data = {'id': id, 'url': url}
         return render(request, 'staffs2.html', data)
+
 
 @never_cache
 def travelid(request, id):
