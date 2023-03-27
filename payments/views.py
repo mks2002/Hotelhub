@@ -27,15 +27,21 @@ def paymentpage(request):
         if request.method == "GET":
             id = request.GET.get('session__id')
             oid = request.GET.get('order_id')
-            cost = request.GET.get('cost')
-            maindata = Bookinghotel.objects.get(id=oid)
-            un = maindata.username
-            email = maindata.useremail
-            pw = maindata.userpassword
-            url = "/dashboard/{}".format(id)
-            data = {'id': id, 'url': url, 'un': un, 'uemail': email,
-                    'pw': pw, 'cost': cost, 'oid': oid}
-            return render(request, 'payment.html', data)
+            if Bookinghotel.objects.get(id=oid).payment_status=='paid':
+                url = "/dashboard/{}".format(id)
+                return HttpResponseRedirect(url)
+            else:
+                cost = request.GET.get('cost')
+                maindata = Bookinghotel.objects.get(id=oid)
+                un = maindata.username
+                email = maindata.useremail
+                pw = maindata.userpassword
+                url = "/dashboard/{}".format(id)
+                data = {'id': id, 'url': url, 'un': un, 'uemail': email,
+                        'pw': pw, 'cost': cost, 'oid': oid}
+                return render(request, 'payment.html', data)
+        
+        
         try:
             if request.method == "POST":
                 uname = request.POST.get('username')

@@ -33,6 +33,7 @@ def hotellist(request, hotelstate, id):
             else:
                 data = Hotellist.objects.filter(state=hotelstate).order_by('?')
             url = "/dashboard/{}".format(id)
+            # this is for showing the user name in place of dashboard button after login ....
             dash_board_name = username[0:7]
             datamain = {"un": username, "pw": password,
                         "url": url, "data": data, 'id': id, 'dn': dash_board_name, 'hstate': hotelstate}

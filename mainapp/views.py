@@ -39,12 +39,15 @@ def signup(request):
             if Login.objects.filter(username=un).exists() | Login.objects.filter(email=email).exists():
                 messages.warning(
                     request, 'username or email already exist select another !')
+                return render(request, 'signup.html')
             else:
                 maindata = Login(username=un, email=email, password=pw)
                 maindata.save()
                 messages.success(
                     request, 'you have registered succesfully, now you can login !')
-            return render(request, 'signup.html')
+                url = '/login/'
+                return HttpResponseRedirect(url)
+            
     return render(request, 'signup.html')
 
 
@@ -121,6 +124,9 @@ def update(request):
                         username=name).update(password=new)
                     messages.success(
                         request, 'your password is updated successfully now you can login !')
+                    url = '/login/'
+                    return HttpResponseRedirect(url)
+
             else:
                 messages.error(
                     request, 'password and confirm password must be same !')
