@@ -47,7 +47,7 @@ def signup(request):
                     request, 'you have registered succesfully, now you can login !')
                 url = '/login/'
                 return HttpResponseRedirect(url)
-            
+
     return render(request, 'signup.html')
 
 

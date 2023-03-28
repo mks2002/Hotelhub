@@ -1,0 +1,270 @@
+.explore-travel {
+   padding: 1rem 0.4rem;
+   margin-bottom: 2.5rem;
+}
+
+.explore-travel .card {
+   border: none;
+   border-right-color: transparent;
+   border-radius: 0.9375rem;
+   text-align: start;
+   height: 78vh;
+   width: 30vw;
+   position: relative;
+   margin: auto;
+   transition: 0.2s linear;
+   border: 2.5px solid var(--secondary-color);
+}
+
+.explore-travel .card:hover {
+   box-shadow: 0px 0px 10px 2px gray;
+}
+
+.explore-travel .card img {
+   border-radius: 0.9375rem 0.9375rem 0 0;
+   object-fit: cover;
+   height: 48%;
+}
+
+.explore-travel .card h4 {
+   text-transform: uppercase;
+   font-weight: 600;
+   margin-bottom: 0%;
+   padding: 0%;
+}
+
+.explore-travel .card h3 {
+   margin-bottom: 0.25rem;
+   line-height: 1.875rem;
+   font-size: 1.65rem;
+   font-weight: 600;
+   color: var(--primary-text);
+   font-family: var(--secondary-font);
+}
+
+.explore-travel .card h3 i {
+   color: #ea3030;
+   font-size: 1.8rem;
+}
+
+.explore-travel .card i {
+   color: #edc93b;
+   font-size: 1rem;
+}
+
+.explore-travel .card span {
+   display: block;
+   font-size: 1.3rem;
+   font-weight: 600;
+   color: var(--primary-color);
+   padding: 0%;
+   padding-bottom: 0.7rem;
+   border-bottom: 0.0625rem solid #eee;
+}
+
+.explore-travel .card span del {
+   color: var(--text-grey);
+   margin: 0.2rem;
+   text-decoration: line-through;
+   font-size: 1.1rem;
+   font-weight: 400;
+}
+
+.explore-travel .card .cost i {
+   background-color: rgb(74, 74, 136);
+   color: #fff;
+   line-height: 70px;
+   width: 70px;
+   height: 70px;
+   text-align: center;
+   border-radius: 50%;
+   position: absolute;
+   right: 15px;
+   bottom: 270px;
+   font-size: 1.6rem;
+}
+
+.myrow {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   background-color: #dbd9d9;
+   height: 10vh;
+   width: 100%;
+   border-radius: 15px;
+   margin: auto;
+   position: relative;
+}
+
+.myrow a {
+   text-decoration: none;
+   font-size: 1.7rem;
+   font-weight: 600;
+   margin-left: 12px;
+   position: relative;
+   text-align: center;
+   align-items: center;
+}
+
+.myrow a::after {
+   position: absolute;
+   content: "";
+   left: 0;
+   width: 0;
+   height: 3px;
+   background: rgb(225, 78, 78);
+   transition: 0.3s all ease;
+   bottom: 0;
+}
+
+.myrow a:hover::after {
+   width: 120%;
+   left: -12%;
+}
+
+.myrow a.active::after {
+   width: 120%;
+   left: -12%;
+}
+
+@media (max-width: 1299px) {
+   .myrow {
+      height: fit-content !important;
+      text-align: center;
+   }
+
+   .myrow a {
+      font-size: 1.3rem;
+   }
+
+   .explore-travel .card {
+      height: 65vh;
+      width: 95%;
+      font-size: small;
+
+   }
+
+   .explore-travel .card img {
+      max-height: 36vh;
+   }
+
+   .explore-travel .card h3 {
+      font-size: 1.25rem;
+      line-height: 1.375rem;
+   }
+
+   .explore-travel .card h4 {
+      font-size: 1.25rem;
+      line-height: 1.375rem;
+   }
+
+   .explore-travel .card p {
+      font-size: 0.85rem;
+      margin: 0%;
+      line-height: 0.85rem;
+   }
+
+   .explore-travel .card .cost i {
+      bottom: 210px;
+   }
+}
+
+@media (max-width: 998px) {
+   .explore-travel .card {
+      height: 78vh;
+      width: 98%;
+      font-size: small;
+   }
+
+   .explore-travel .card .cost i {
+      bottom: 240px;
+   }
+}
+
+@media (max-width: 896px) {
+   .explore-travel .card {
+      height: 76vh;
+      width: 100%;
+      font-size: large;
+   }
+}
+
+
+@media (max-width: 767px) {
+   .explore-travel .card {
+      height: 65vh;
+      width: 65%;
+      font-size: large;
+   }
+}
+
+@media (max-width: 699px) {
+   .explore-travel .card {
+      height: 65vh;
+      width: 80%;
+   }
+
+   .explore-travel .card .cost i {
+      bottom: 210px;
+   }
+}
+
+
+
+/* this is for giving border radius to the last image of this page.. */
+.myimage {
+   border: 2.5px solid var(--secondary-color);
+   border-radius: 15px;
+   margin-right: 40px;
+}
+
+/*  from  here we start the css for search bar section..  */
+.height {
+   height: 15vh;
+}
+
+.search {
+   position: relative;
+   box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+}
+
+.search input {
+   height: 60px;
+   text-indent: 25px;
+   border: 2px solid #d6d4d4;
+}
+
+
+
+.search input:focus {
+   box-shadow: none;
+   border: 2px solid blue;
+
+}
+
+.search .fa-search {
+   position: absolute;
+   top: 20px;
+   left: 16px;
+}
+
+.search button {
+   position: absolute;
+   top: 5px;
+   right: 5px;
+   height: 50px;
+   width: 110px;
+   background: blue;
+}
+
+@media (max-width: 1299px) {
+   .search input::placeholder {
+      font-size: 10px;
+   }
+
+   .search button {
+      height: 40px;
+      width: 80px;
+      top: 8px;
+   }
+}

@@ -22,14 +22,16 @@ def hotellist(request, hotelstate, id):
         return HttpResponseRedirect('/login/')
 
     elif 'user_{}_uname'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session:
-        user = Login.objects.get( username=request.session.get('user_{}_uname'.format(id)),email=request.session.get('user_{}_uemail'.format(id)), password=request.session.get('user_{}_upass'.format(id)))
+        user = Login.objects.get(username=request.session.get('user_{}_uname'.format(id)), email=request.session.get(
+            'user_{}_uemail'.format(id)), password=request.session.get('user_{}_upass'.format(id)))
         username = request.session['user_{}_uname'.format(user.id)]
         password = request.session['user_{}_upass'.format(user.id)]
         if Login.objects.filter(username=username, password=password).exists():
             if hotelstate == "all":
                 data = Hotellist.objects.all().order_by('?')
             elif hotelstate == "others":
-                data = Hotellist.objects.filter(state="gujrat") | Hotellist.objects.filter(state="laddakh").order_by('?')
+                data = Hotellist.objects.filter(state="gujrat") | Hotellist.objects.filter(
+                    state="laddakh").order_by('?')
             else:
                 data = Hotellist.objects.filter(state=hotelstate).order_by('?')
             url = "/dashboard/{}".format(id)
