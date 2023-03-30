@@ -61,7 +61,7 @@
 {% endblock style %}
 
 {% block navlogo %}
-<a class="navbar-brand" href="{% url 'homeid' id %}">
+<a class="navbar-brand" href="{% url 'home' id %}">
   <img src="{% static './images/logo.png' %}" class="img-fluid" alt="logo" />
 </a>
 
@@ -71,36 +71,36 @@
 
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/'|add:id %}active {% endif %}" aria-current="page"
-    href="{% url 'homeid' id %}">Home</a>
+    href="{% url 'home' id %}">Home</a>
 </li>
 
 
 <li class="nav-item">
-  <a class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}" href="{% url 'aboutid' id%}">About</a>
+  <a class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}" href="{% url 'about' id%}">About</a>
 </li>
 
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/services/'|add:id %}active {% endif %}"
-    href="{% url 'serviceid' id %}">Services</a>
+    href="{% url 'service' id %}">Services</a>
 </li>
 
 
 
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
-    href="{% url 'staffsid' id%}">Staffs</a>
+    href="{% url 'staffs' id%}">Staffs</a>
 </li>
 
 
 <li class="nav-item">
-  <a class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}" href="{% url 'blogid' id%}">Blogs</a>
+  <a class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}" href="{% url 'blog' id%}">Blogs</a>
 </li>
 
 
 
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
-    href="{% url 'travelid' id%}">Traindetails</a>
+    href="{% url 'travel' id%}">Traindetails</a>
 </li>
 
 
@@ -219,6 +219,7 @@
                 </div>
               </div>
             </form>
+            
           </div>
         </div>
 
@@ -244,10 +245,11 @@
         <h3>
           Welcome to
           <span>
-            Our Hotel <br class="d-none d-lg-block" />
-            We have
+            Our {{hname1}} , {{hcity1}} , {{hstate1}}... <br class="d-none d-lg-block" />
+            
           </span>
-          best world class hotels
+          We have
+          best world class services..
         </h3>
         <p>
           A good hotel website should allow people to create and confirm
@@ -264,7 +266,7 @@
       </div>
 
       <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center mt-4">
-        <img src="{% static 'images/bgcover.jpg' %}" class="img-fluid myimage" alt="About Us" />
+        <img src="{{image}}" class="img-fluid myimage booking_image" alt="About Us" />
 
       </div>
     </div>

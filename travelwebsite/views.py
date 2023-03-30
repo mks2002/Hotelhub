@@ -13,102 +13,79 @@ from django.shortcuts import render
 import requests
 
 
-def about(request):
-    return render(request, 'about.html')
-
-
-def services(request):
-    return render(request, 'services.html')
-
-
 def price(request):
     return HttpResponse('this is price page')
-
-
-def staffs(request):
-    return render(request, 'staffs.html')
-
-
-def travel(request):
-    data = {}
-    try:
-        if request.method == "POST":
-            id1 = request.POST.get("source")
-            url = "https://trains.p.rapidapi.com/"
-
-            payload = {"search": id1}
-            headers = {
-                "content-type": "application/json",
-                "X-RapidAPI-Key": "a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b4a0",
-                "X-RapidAPI-Host": "trains.p.rapidapi.com",
-            }
-
-            response = requests.request(
-                "POST", url, json=payload, headers=headers)
-            datamain = response.json()
-            data = {"datamain": datamain}
-            return render(request, "travel_details.html", data)
-    except Exception as e:
-        pass
-    return render(request, "travel_details.html", data)
 
 
 #  path('', v4.homepage, name='home'),
 #  path('<id>', v4.homepageid, name='homeid'),
 
 
-def homepage(request):
-    return render(request, 'index.html')
-
-
 # from here all this are dynamic pages ....
 @never_cache
-def homepageid(request, id):
-    if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-        return HttpResponseRedirect('/')
+def homepage(request, id=None):
+    if id == None:
+        return render(request, 'index.html')
     else:
-        url = "/dashboard/{}".format(id)
-        data = {'id': id, 'url': url}
-        return render(request, 'index2.html', data)
+        if 'user_{}_uname'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session:
+            url = "/dashboard/{}".format(id)
+            data = {'id': id, 'url': url}
+            return render(request, 'index2.html', data)
+        else:
+            return HttpResponseRedirect('/')
+
+
+# def about(request):
+#     return render(request, 'about.html')
 
 
 @never_cache
-def aboutid(request, id):
-    if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-        return HttpResponseRedirect('/about/')
+def about(request, id=None):
+    if id == None:
+        return render(request, 'about.html')
     else:
-        url = "/dashboard/{}".format(id)
-        data = {'id': id, 'url': url}
-        return render(request, 'about2.html', data)
+        if 'user_{}_uname'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session:
+            url = "/dashboard/{}".format(id)
+            data = {'id': id, 'url': url}
+            return render(request, 'about2.html', data)
+        else:
+            return HttpResponseRedirect('/about/')
+
+
+# def services(request):
+#     return render(request, 'services.html')
 
 
 @never_cache
-def servicesid(request, id):
-    if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-        return HttpResponseRedirect('/services/')
+def services(request, id=None):
+    if id == None:
+        return render(request, 'services.html')
     else:
-        url = "/dashboard/{}".format(id)
-        data = {'id': id, 'url': url}
-        return render(request, 'services2.html', data)
+        if 'user_{}_uname'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session:
+            url = "/dashboard/{}".format(id)
+            data = {'id': id, 'url': url}
+            return render(request, 'services2.html', data)
+        else:
+            return HttpResponseRedirect('/services/')
 
 
 @never_cache
-def staffsid(request, id):
-    if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-        return HttpResponseRedirect('/staffs/')
+def staffs(request, id=None):
+    if id == None:
+        return render(request, 'staffs.html')
     else:
-        url = "/dashboard/{}".format(id)
-        data = {'id': id, 'url': url}
-        return render(request, 'staffs2.html', data)
+        if 'user_{}_uname'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session:
+            url = "/dashboard/{}".format(id)
+            data = {'id': id, 'url': url}
+            return render(request, 'staffs2.html', data)
+        else:
+            return HttpResponseRedirect('/staffs/')
 
 
 @never_cache
-def travelid(request, id):
-    if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-        return HttpResponseRedirect('/travel_details/')
-    else:
-        url = "/dashboard/{}".format(id)
-        data = {'id': id, 'url': url}
+def travel(request, id=None):
+    if id == None:
+        data = {}
         try:
             if request.method == "POST":
                 id1 = request.POST.get("source")
@@ -117,16 +94,43 @@ def travelid(request, id):
                 payload = {"search": id1}
                 headers = {
                     "content-type": "application/json",
-                    "X-RapidAPI-Key": "a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b4a0",
+
+                    "X-RapidAPI-Key": "a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b0",
                     "X-RapidAPI-Host": "trains.p.rapidapi.com",
                 }
 
                 response = requests.request(
                     "POST", url, json=payload, headers=headers)
                 datamain = response.json()
-                url = "/dashboard/{}".format(id)
-                data = {"datamain": datamain, 'id': id, 'url': url}
-                return render(request, "travel_details2.html", data)
+                data = {"datamain": datamain}
+                return render(request, "travel_details.html", data)
         except Exception as e:
             pass
-        return render(request, "travel_details2.html", data)
+        return render(request, "travel_details.html", data)
+    else:
+        if 'user_{}_uname'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session:
+            url = "/dashboard/{}".format(id)
+            data = {'id': id, 'url': url}
+            try:
+                if request.method == "POST":
+                    id1 = request.POST.get("source")
+                    url = "https://trains.p.rapidapi.com/"
+
+                    payload = {"search": id1}
+                    headers = {
+                        "content-type": "application/json",
+                        "X-RapidAPI-Key": "a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b4a0",
+                        "X-RapidAPI-Host": "trains.p.rapidapi.com",
+                    }
+
+                    response = requests.request(
+                        "POST", url, json=payload, headers=headers)
+                    datamain = response.json()
+                    url = "/dashboard/{}".format(id)
+                    data = {"datamain": datamain, 'id': id, 'url': url}
+                    return render(request, "travel_details2.html", data)
+            except Exception as e:
+                pass
+            return render(request, "travel_details2.html", data)
+        else:
+            return HttpResponseRedirect('/travel_details/')

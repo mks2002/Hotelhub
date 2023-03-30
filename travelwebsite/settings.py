@@ -1,4 +1,4 @@
-
+# here I import the message to change its tag name error by danger so that it is suitable with bootstrap classname...
 from django.contrib import messages
 from pathlib import Path
 import os
@@ -120,8 +120,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 
 ]
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+
+# static root is only required in production for development it does not have any use .....
+# STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 # Default primary key field type
@@ -130,8 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-
+# this media section code we have to write for dealing with images...
 MEDIA_ROOT = BASE_DIR/"media"
 MEDIA_URL = "/media/"
 

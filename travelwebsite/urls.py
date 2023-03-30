@@ -27,25 +27,26 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', v4.homepage, name='home'),
-    path('<id>', v4.homepageid, name='homeid'),
+    path('<id>', v4.homepage, name='home'),
+    # path('<id>', v4.homepageid, name='homeid'),
 
     path('about/', v4.about, name='about'),
-    path('about/<id>', v4.aboutid, name='aboutid'),
+    path('about/<id>', v4.about, name='about'),
 
     path('services/', v4.services, name='service'),
-    path('services/<id>', v4.servicesid, name='serviceid'),
+    path('services/<id>', v4.services, name='service'),
 
     path('pricings/', v4.price, name='price'),
     # path('pricings/<id>', v4.priceid, name='priceid'),
 
     path('staffs/', v4.staffs, name='staffs'),
-    path('staffs/<id>', v4.staffsid, name='staffsid'),
+    path('staffs/<id>', v4.staffs, name='staffs'),
 
     path('travel_details/', v4.travel, name='travel'),
-    path('travel_details/<id>', v4.travelid, name='travelid'),
+    path('travel_details/<id>', v4.travel, name='travel'),
 
     path('blogs/', v5.blog, name='blog'),
-    path('blogs/<id>', v5.blogid, name='blogid'),
+    path('blogs/<id>', v5.blog, name='blog'),
 
 
     path('bookings/<id>/', v2.bookings, name='booking'),
@@ -53,6 +54,7 @@ urlpatterns = [
 
     path('login/', v1.login, name='login'),
     path('login/<id>', v1.login, name='login'),
+   
     # this is for update the password before login..
     path('update/', v1.update, name='update'),
     path('signup/', v1.signup, name='signup'),

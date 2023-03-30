@@ -17,8 +17,8 @@ class Bookinghotel(models.Model):
 
     # this are the  detail of that user who is currently logged in ...
     username = models.CharField(max_length=30)
-    useremail = models.EmailField(max_length=50,default=None)
-    userpassword = models.CharField(max_length=30)
+    useremail = models.EmailField(max_length=50, default=None)
+    userpassword = models.CharField(max_length=200)
 
     # this are the details of the hotel for which user is currently doing the booking...
     hotelname = models.CharField(max_length=80, default=None)

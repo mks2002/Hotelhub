@@ -6,7 +6,7 @@ from django.db import models
 class Paymentdetail(models.Model):
     # this details are bydefault provide by me ..
     username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=200)
     order_no = models.IntegerField()
     total_cost = models.FloatField(default=0.0)
     payment_status = models.CharField(max_length=50, default='paid')

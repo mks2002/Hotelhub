@@ -1,8 +1,4 @@
-{% extends 'base.html' %}
-
- 
- {% load static %}
-
+{% extends 'base.html' %} {% load static %}
 
 
 
@@ -11,33 +7,45 @@
 <section id="home" class="banner_wrapper p-0">
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-
-      <div class="swiper-slide" style=" background-image: url('{% static 'images/slider/slide5.webp' %}'); " >
-          <div class="slide-caption text-center">
-            <div>
-              <h1>Welcome to hotels in GOA</h1>
-              <p>
-                you are most welcome to the worlds best hotels in dubai , you can
-                book any time at your own pace. we provide the best facility you
-                have experienced ever. you are always welcome
-              </p>
-            </div>
+      <div
+        class="swiper-slide"
+        style="
+          background-image: url('{% static 'images/slider/slide5.webp' %}');
+        "
+      >
+        <div class="slide-caption text-center">
+          <div>
+            <h1>Welcome to hotels in GOA </h1>
+            <p>
+              you are most welcome to the worlds best hotels in dubai , you can
+              book any time at your own pace. we provide the best facility you
+              have experienced ever. you are always welcome
+            </p>
           </div>
+        </div>
       </div>
 
-      <div class="swiper-slide" style=" background-image: url('{% static 'images/slider/slider2.webp' %}'); " >
-          <div class="slide-caption text-center">
-            <div>
-              <h1>Welcome to hotels in KERALA</h1>
-              <p>
-                you are most welcome to the worlds best hotels in dubai , you can
-                book any time at your own pace. we provide the best facility you
-                have experienced ever. you are always welcome
-              </p>
-            </div>
+      <div
+        class="swiper-slide"
+        style="
+          background-image: url('{% static 'images/slider/slider2.webp' %}');
+        "
+      >
+        <div class="slide-caption text-center">
+          <div>
+            <h1>Welcome to hotels in KERALA</h1>
+            <p>
+              you are most welcome to the worlds best hotels in dubai , you can
+              book any time at your own pace. we provide the best facility you
+              have experienced ever. you are always welcome
+            </p>
           </div>
+        </div>
       </div>
-      <div class="swiper-slide" style=" background-image: url('{% static 'images/slider/slide7.jpg' %}'); " >
+      <div
+        class="swiper-slide"
+        style="background-image: url('{% static 'images/slider/slide7.jpg' %}')"
+      >
         <div class="slide-caption text-center">
           <div>
             <h1>Welcome to hotels in SRINAGAR & LADAKH</h1>
@@ -48,33 +56,39 @@
             </p>
           </div>
         </div>
-    </div>
+      </div>
 
-    <div class="swiper-slide" style=" background-image: url('{% static 'images/slider/slide3.jpg' %}'); " >
-      <div class="slide-caption text-center">
-        <div>
-          <h1>Welcome to hotels in RAJASTHAN & GUJRAT</h1>
-          <p>
-            you are most welcome to the worlds best hotels in dubai , you can
-            book any time at your own pace. we provide the best facility you
-            have experienced ever. you are always welcome
-          </p>
+      <div
+        class="swiper-slide"
+        style="background-image: url('{% static 'images/slider/slide3.jpg' %}')"
+      >
+        <div class="slide-caption text-center">
+          <div>
+            <h1>Welcome to hotels in RAJASTHAN & GUJRAT</h1>
+            <p>
+              you are most welcome to the worlds best hotels in dubai , you can
+              book any time at your own pace. we provide the best facility you
+              have experienced ever. you are always welcome
+            </p>
+          </div>
         </div>
       </div>
-  </div>
 
-  <div class="swiper-slide" style=" background-image: url('{% static 'images/slider/slide6.jpg' %}'); " >
-    <div class="slide-caption text-center">
-      <div>
-        <h1>Welcome to hotels in SHIMLA</h1>
-        <p>
-          you are most welcome to the worlds best hotels in dubai , you can
-          book any time at your own pace. we provide the best facility you
-          have experienced ever. you are always welcome
-        </p>
+      <div
+        class="swiper-slide"
+        style="background-image: url('{% static 'images/slider/slide6.jpg' %}')"
+      >
+        <div class="slide-caption text-center">
+          <div>
+            <h1>Welcome to hotels in SHIMLA</h1>
+            <p>
+              you are most welcome to the worlds best hotels in dubai , you can
+              book any time at your own pace. we provide the best facility you
+              have experienced ever. you are always welcome
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-</div>
     </div>
     <div class="swiper-pagination"></div>
   </div>
@@ -191,7 +205,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}"
+              <a
+                class="main-btn border-white text-white mt-lg-5"
+                href="{% url 'service'%}"
                 >Book now</a
               >
             </div>
@@ -212,7 +228,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}"
+              <a
+                class="main-btn border-white text-white mt-lg-5"
+                href="{% url 'service'%}"
                 >Book now</a
               >
             </div>
@@ -237,7 +255,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}"
+              <a
+                class="main-btn border-white text-white mt-lg-5"
+                href="{% url 'service'%}"
                 >Book now</a
               >
             </div>
@@ -363,31 +383,31 @@
     </div>
   </div>
 
-          <div class="counter mt-5">
-            <div class="container">
-              <div class="row text-center">
-                <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                  <h1><span id="count1"></span>+</h1>
-                  <p>Happy Clients</p>
-                </div>
+  <div class="counter mt-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+          <h1><span id="count1"></span>+</h1>
+          <p>Happy Clients</p>
+        </div>
 
-                <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                  <h1><span id="count2"></span>+</h1>
-                  <p>New Friendships</p>
-                </div>
+        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+          <h1><span id="count2"></span>+</h1>
+          <p>New Friendships</p>
+        </div>
 
-                <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                  <h1><span id="count3"></span>+</h1>
-                  <p>Five Start Ratings</p>
-                </div>
+        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+          <h1><span id="count3"></span>+</h1>
+          <p>Five Start Ratings</p>
+        </div>
 
-                <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                  <h1><span id="count4"></span>+</h1>
-                  <p>Served Breakfast</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
+          <h1><span id="count4"></span>+</h1>
+          <p>Served Breakfast</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Team section -->
@@ -514,7 +534,9 @@
     </div>
     <div class="row">
       <div class="col-sm-12 mycenter">
-        <a href="{% url 'staffs'%}" class="main-btn mt-2">View all staffs and team members</a>
+        <a href="{% url 'staffs'%}" class="main-btn mt-2"
+          >View all staffs and team members</a
+        >
       </div>
     </div>
   </div>

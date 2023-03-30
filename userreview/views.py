@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.cache import never_cache
 from django.contrib import messages
 
+
 @never_cache
 def review(request, id):
     if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
@@ -23,28 +24,41 @@ def review(request, id):
             ratings = request.POST.get('ratings')
             data = Review(username=name, user_review=review, ratings=ratings)
             data.save()
-            # n = 'your review is added successfully'
-            # cname = 'alert-success'
-            # bool = True
             url = "/dashboard/{}".format(id)
-            messages.success(request,'your review is added successfully !')
+            messages.success(request, 'your review is added successfully !')
             data = {'un': username,
-                     'url': url, 'id': id}
+                    'url': url, 'id': id}
         return render(request, 'reviewform.html', data)
 
 
-# this is the blog page here we display the review of our customers ....
-def blog(request):
-    data = Review.objects.all()
-    datamain = {'data': data}
-    return render(request, 'blogs.html', datamain)
-
 @never_cache
-def blogid(request, id):
-    if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-        return HttpResponseRedirect('/blogs/')
-    else:
+def blog(request, id=None):
+    if id == None:
         data = Review.objects.all()
-        url = "/dashboard/{}".format(id)
-        datamain = {'data': data, 'id': id, 'url': url}
-        return render(request, 'blogs2.html', datamain)
+        datamain = {'data': data}
+        return render(request, 'blogs.html', datamain)
+    else:
+        if 'user_{}_uname'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session:
+            data = Review.objects.all()
+            url = "/dashboard/{}".format(id)
+            datamain = {'data': data, 'id': id, 'url': url}
+            return render(request, 'blogs2.html', datamain)
+        else:
+            return HttpResponseRedirect('/blogs/')
+
+
+# this is the blog page here we display the review of our customers ....
+# def blog(request):
+#     data = Review.objects.all()
+#     datamain = {'data': data}
+#     return render(request, 'blogs.html', datamain)
+
+# @never_cache
+# def blogid(request, id):
+#     if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
+#         return HttpResponseRedirect('/blogs/')
+#     else:
+#         data = Review.objects.all()
+#         url = "/dashboard/{}".format(id)
+#         datamain = {'data': data, 'id': id, 'url': url}
+#         return render(request, 'blogs2.html', datamain)

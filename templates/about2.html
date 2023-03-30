@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block navlogo %}
-<a class="navbar-brand" href="{% url 'homeid' id %}">
+<a class="navbar-brand" href="{% url 'home' id %}">
   <img
     src="{% static './images/logo.png' %}"
     class="img-fluid"
@@ -18,7 +18,7 @@
 <a
   class="nav-link {% if request.path == '/'|add:id %}active {% endif %}"
   aria-current="page"
-  href="{% url 'homeid' id %}"
+  href="{% url 'home' id %}"
   >Home</a
 >
 </li>
@@ -27,7 +27,7 @@
 <li class="nav-item">
 <a
   class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}"
-  href="{% url 'aboutid' id%}"
+  href="{% url 'about' id%}"
   >About</a
 >
 </li>
@@ -35,7 +35,7 @@
 <li class="nav-item">
 <a
   class="nav-link {% if request.path == '/services/'|add:id %}active {% endif %}"
-  href="{% url 'serviceid' id %}"
+  href="{% url 'service' id %}"
   >Services</a
 >
 </li>
@@ -45,7 +45,7 @@
 <li class="nav-item">
 <a
   class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
-  href="{% url 'staffsid' id%}"
+  href="{% url 'staffs' id%}"
   >Staffs</a
 >
 </li>
@@ -54,7 +54,7 @@
 <li class="nav-item">
 <a
   class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}"
-  href="{% url 'blogid' id%}"
+  href="{% url 'blog' id%}"
   >Blogs</a
 >
 </li>
@@ -64,7 +64,7 @@
 <li class="nav-item">
 <a
   class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
-  href="{% url 'travelid' id%}"
+  href="{% url 'travel' id%}"
   >Traindetails</a
 >
 </li>

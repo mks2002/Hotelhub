@@ -3,6 +3,7 @@
 # import all basic rendering and redirecting modules...
 # from django.contrib.auth.decorators import login_required
 
+from django.urls import reverse
 from django.views.decorators.cache import never_cache
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -19,6 +20,9 @@ from bookings.models import Bookinghotel
 from payments.models import Paymentdetail
 
 from django.contrib import messages
+
+# this is for hashing the password before save it to database.....
+from django.contrib.auth.hashers import make_password, check_password
 
 
 # we dont use Hotellist here..
@@ -41,6 +45,7 @@ def signup(request):
                     request, 'username or email already exist select another !')
                 return render(request, 'signup.html')
             else:
+                pw = make_password(pw)
                 maindata = Login(username=un, email=email, password=pw)
                 maindata.save()
                 messages.success(
@@ -60,9 +65,10 @@ def login(request):
     if request.method == "POST":
         un = request.POST.get('name')
         pw = request.POST.get('password')
-        if Login.objects.filter(username=un, password=pw).exists():
+
+        if Login.objects.filter(username=un, password=make_password(pw)).exists():
             hl = 'all'
-            user = Login.objects.get(username=un, password=pw)
+            user = Login.objects.get(username=un, password=make_password(pw))
             request.session['user_{}_uname'.format(user.id)] = user.username
             request.session['user_{}_uemail'.format(user.id)] = user.email
             request.session['user_{}_upass'.format(user.id)] = user.password
@@ -76,6 +82,39 @@ def login(request):
                 request, 'you are not registered create account to login !')
             return render(request, 'login.html')
     return render(request, 'login.html')
+
+
+@never_cache
+def login(request):
+
+    if request.method == "POST":
+        un = request.POST.get('name')
+        pw = request.POST.get('password')
+
+        try:
+            user = Login.objects.get(username=un)
+        except Login.DoesNotExist:
+            user = None
+
+        if user is not None and check_password(pw, user.password):
+            hl = 'all'
+            request.session['user_{}_uname'.format(user.id)] = user.username
+            request.session['user_{}_uemail'.format(user.id)] = user.email
+            request.session['user_{}_upass'.format(user.id)] = user.password
+            id = user.id
+            url = "/hotellist/{}/{}".format(hl, id)
+            messages.success(
+                request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
+            return HttpResponseRedirect(url)
+        else:
+            messages.error(
+                request, 'you are not registered create account to login !')
+            return render(request, 'login.html')
+    
+    if request.method == "GET":
+            messages.warning(request, 'for booking you need to login first !')
+            return render(request, 'login.html')
+
 
 # first delete all the sessions using del command...
 # session.flush will delete all the cookies corresponding to the session key...
@@ -93,7 +132,7 @@ def logout_user(request, id):
         del request.session['user_{}_upass'.format(user.id)]
         request.session.flush()
         request.session.clear_expired()
-        messages.success(request, 'you are logged out !')
+        messages.info(request, 'you are logged out !')
     return HttpResponseRedirect('/login/')
 
 
@@ -112,16 +151,18 @@ def update(request):
             oldpassword = main.password
 
             if new == cnew:
-                if new == oldpassword:
+                if check_password(new, oldpassword):
                     messages.warning(
                         request, 'your new password is to similar to old password select another !')
                 else:
-                    Login.objects.filter(username=name).update(password=new)
+                    updatedpassword = make_password(new)
+                    Login.objects.filter(username=name).update(
+                        password=updatedpassword)
                     # when we update the password we have to update it in the Bookinghotel and payment table also othewise data is not properly displayed...
-                    Bookinghotel.objects.filter(
-                        username=name).update(userpassword=new)
+                    Bookinghotel.objects.filter(username=name).update(
+                        userpassword=updatedpassword)
                     Paymentdetail.objects.filter(
-                        username=name).update(password=new)
+                        username=name).update(password=updatedpassword)
                     messages.success(
                         request, 'your password is updated successfully now you can login !')
                     url = '/login/'
