@@ -17,10 +17,6 @@ def price(request):
     return HttpResponse('this is price page')
 
 
-#  path('', v4.homepage, name='home'),
-#  path('<id>', v4.homepageid, name='homeid'),
-
-
 # from here all this are dynamic pages ....
 @never_cache
 def homepage(request, id=None):
@@ -35,10 +31,6 @@ def homepage(request, id=None):
             return HttpResponseRedirect('/')
 
 
-# def about(request):
-#     return render(request, 'about.html')
-
-
 @never_cache
 def about(request, id=None):
     if id == None:
@@ -50,10 +42,6 @@ def about(request, id=None):
             return render(request, 'about2.html', data)
         else:
             return HttpResponseRedirect('/about/')
-
-
-# def services(request):
-#     return render(request, 'services.html')
 
 
 @never_cache
