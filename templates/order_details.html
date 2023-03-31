@@ -12,10 +12,7 @@
     padding:2%;
   }
 
-  i {
-    color: #edc93b;
-    font-size: 1rem;
-  }
+ 
 </style>
 
 {% endblock style %}
@@ -113,13 +110,16 @@
       <div class="col-sm-12">
         <div class="mydiv p-1 px-3">
           <dl class="row">
+
             <dt class="col-sm-3">Customer name :</dt>
             <dt class="col-sm-9">
               {{maindata.firstname }} {{maindata.lastname}}
             </dt>
+
             <hr />
             <dt class="col-sm-3">Customer email :</dt>
             <dt class="col-sm-9">{{maindata.email }}</dt>
+
             <hr />
             <dt class="col-sm-3">Contact details :</dt>
             <dt class="col-sm-9">{{maindata.contact_no }}</dt>

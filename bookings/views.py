@@ -19,9 +19,8 @@ from mainapp.models import Login
 from django.contrib import messages
 # useremail
 
-# this is the booking form page....
 
-
+# this is the booking form page.....
 @never_cache
 def bookings(request, id):
     if f"user_{id}_uname" not in request.session and f"user_{id}_upass" not in request.session and f"user_{id}_uemail" not in request.session:
@@ -161,12 +160,22 @@ def details(request):
 
 
 # this page is for deleting the order....
+
+def delete_confirmation(request):
+    pass
+    
+
+
 def delete(request):
     id = request.GET.get('session__id')
     if 'user_{}_uname'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session:
         id1 = request.GET.get('id1')
         id = request.GET.get('session__id')
+        customer_name=Bookinghotel.objects.get(id=id1).firstname+' '+Bookinghotel.objects.get(id=id1).lastname
         Bookinghotel.objects.filter(id=id1).delete()
         Paymentdetail.objects.filter(order_no=id1).delete()
         url = "/dashboard/{}".format(id)
+        messages.info(request,'your order for mr. {} has been deleted successfully !'.format(customer_name))
         return HttpResponseRedirect(url)
+
+

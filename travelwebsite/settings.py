@@ -71,10 +71,25 @@ WSGI_APPLICATION = 'travelwebsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+# this is for dbsqlite database....
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# this is for postgree database....
+# pip install psycopg2-binary
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '7651930560',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
