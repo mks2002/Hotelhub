@@ -15,6 +15,7 @@ from operator import not_
 # this is for payment form page ..
 
 from django.views.decorators.cache import never_cache
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @never_cache
@@ -27,12 +28,19 @@ def paymentpage(request):
         if request.method == "GET":
             id = request.GET.get('session__id')
             oid = request.GET.get('order_id')
-            if Bookinghotel.objects.get(id=oid).payment_status=='paid':
+            try:
+                maindata = Bookinghotel.objects.get(id=oid)
+            except ObjectDoesNotExist:
+                messages.error(request, 'the page you currrently looking for is not available..')
+                url = "/dashboard/{}".format(id)
+                data1 = {'id': id, 'url': url}
+                return render(request, 'error_page.html', data1)
+            if maindata.payment_status == 'paid':
                 url = "/dashboard/{}".format(id)
                 return HttpResponseRedirect(url)
             else:
                 cost = request.GET.get('cost')
-                maindata = Bookinghotel.objects.get(id=oid)
+                # maindata = Bookinghotel.objects.get(id=oid)
                 un = maindata.username
                 email = maindata.useremail
                 pw = maindata.userpassword
@@ -40,8 +48,7 @@ def paymentpage(request):
                 data = {'id': id, 'url': url, 'un': un, 'uemail': email,
                         'pw': pw, 'cost': cost, 'oid': oid}
                 return render(request, 'payment.html', data)
-        
-        
+
         try:
             if request.method == "POST":
                 uname = request.POST.get('username')
@@ -58,7 +65,8 @@ def paymentpage(request):
                 un = maindata.username
                 pw = maindata.userpassword
 
-                full_name = (maindata.firstname +' '+ maindata.lastname).upper()
+                full_name = (maindata.firstname + ' ' +
+                             maindata.lastname).upper()
                 url = "/dashboard/{}".format(id)
 
                 data1 = Paymentdetail(

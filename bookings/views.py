@@ -1,5 +1,6 @@
-
 # import all basic rendering and redirecting modules...
+from django.shortcuts import redirect
+
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -17,7 +18,9 @@ from payments.models import Paymentdetail
 
 from mainapp.models import Login
 from django.contrib import messages
-# useremail
+
+# this we install for if there is some error then we can change our custom error page with django default error page...
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # this is the booking form page.....
@@ -98,7 +101,8 @@ def bookings(request, id):
 
                     # this is for redirecting into the dashboard page ...
                     response = HttpResponseRedirect(url)
-                    messages.success(request, f'Your booking has been done for mr. {full_name}. You can see your order details below !')
+                    messages.success(
+                        request, f'Your booking has been done for mr. {full_name}. You can see your order details below !')
                     return response
         except Exception as e:
             pass
@@ -129,6 +133,9 @@ def dashboard(request, id):
 
 
 # this is for order details page.....
+# this is we do for override the django default error page by our custom message if we want we can change it by our custom error page also.....
+
+
 @never_cache
 def details(request):
     id = request.GET.get('session__id')
@@ -139,12 +146,19 @@ def details(request):
         if request.method == "GET":
             id = request.GET.get('session__id')
             detail_id = request.GET.get('id1')
+
             un = request.session['user_{}_uname'.format(id)]
             uemail = request.session['user_{}_uemail'.format(id)]
             password = request.session['user_{}_upass'.format(id)]
 
             url = "/dashboard/{}".format(id)
-            maindata = Bookinghotel.objects.get(id=detail_id)
+            try:
+                maindata = Bookinghotel.objects.get(id=detail_id)
+            except ObjectDoesNotExist:
+                messages.error(request, 'the page you currrently looking for is not available..')
+                data1={'id':id,'url':url}
+                return render(request, 'error_page.html',data1)
+            print(maindata)
             bool = (maindata.payment_status.lower() == 'unpaid')
             start = str(maindata.start)
             end = str(maindata.end)
@@ -154,16 +168,17 @@ def details(request):
             data = {'un': un, 'pw': password, 'uemail': uemail,
                     'maindata': maindata, 'url': url, 'cost': total_cost, 'id': id, 'bool': bool, 'order_id': detail_id, 'bool': bool}
             return render(request, 'order_details.html', data)
+
         return render(request, 'order_details.html', data)
 
 # in each page context we have to pass the id value because it is the session key variable so we use this so that we can check if someone is logged in or logged out ...
-
+# return HttpResponse('sorry this page is currently does not exist!')
 
 # this page is for deleting the order....
 
+
 def delete_confirmation(request):
     pass
-    
 
 
 def delete(request):
@@ -171,11 +186,12 @@ def delete(request):
     if 'user_{}_uname'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session:
         id1 = request.GET.get('id1')
         id = request.GET.get('session__id')
-        customer_name=Bookinghotel.objects.get(id=id1).firstname+' '+Bookinghotel.objects.get(id=id1).lastname
+        customer_name = Bookinghotel.objects.get(
+            id=id1).firstname+' '+Bookinghotel.objects.get(id=id1).lastname
         Bookinghotel.objects.filter(id=id1).delete()
         Paymentdetail.objects.filter(order_no=id1).delete()
         url = "/dashboard/{}".format(id)
-        messages.info(request,'your order for mr. {} has been deleted successfully !'.format(customer_name))
+        messages.info(
+            request, 'your order for mr. {} has been deleted successfully !'.format(customer_name))
         return HttpResponseRedirect(url)
-
 

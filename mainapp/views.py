@@ -58,34 +58,6 @@ def signup(request):
 
 @never_cache
 def login(request):
-    if request.method == "GET":
-        messages.warning(request, 'for booking you need to login first !')
-        return render(request, 'login.html')
-
-    if request.method == "POST":
-        un = request.POST.get('name')
-        pw = request.POST.get('password')
-
-        if Login.objects.filter(username=un, password=make_password(pw)).exists():
-            hl = 'all'
-            user = Login.objects.get(username=un, password=make_password(pw))
-            request.session['user_{}_uname'.format(user.id)] = user.username
-            request.session['user_{}_uemail'.format(user.id)] = user.email
-            request.session['user_{}_upass'.format(user.id)] = user.password
-            id = user.id
-            url = "/hotellist/{}/{}".format(hl, id)
-            messages.success(
-                request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
-            return HttpResponseRedirect(url)
-        else:
-            messages.error(
-                request, 'you are not registered create account to login !')
-            return render(request, 'login.html')
-    return render(request, 'login.html')
-
-
-@never_cache
-def login(request):
 
     if request.method == "POST":
         un = request.POST.get('name')
@@ -110,10 +82,10 @@ def login(request):
             messages.error(
                 request, 'you are not registered create account to login !')
             return render(request, 'login.html')
-    
+
     if request.method == "GET":
-            messages.warning(request, 'for booking you need to login first !')
-            return render(request, 'login.html')
+        messages.warning(request, 'for booking you need to login first !')
+        return render(request, 'login.html')
 
 
 # first delete all the sessions using del command...
@@ -178,3 +150,32 @@ def update(request):
 
 
 # we can also create one update password after the login .....
+
+
+# this is wrong way to check the password here we cant compare like this for comparison we have to use check_password ....
+# @never_cache
+# def login(request):
+#     if request.method == "GET":
+#         messages.warning(request, 'for booking you need to login first !')
+#         return render(request, 'login.html')
+
+#     if request.method == "POST":
+#         un = request.POST.get('name')
+#         pw = request.POST.get('password')
+
+#         if Login.objects.filter(username=un, password=make_password(pw)).exists():
+#             hl = 'all'
+#             user = Login.objects.get(username=un, password=make_password(pw))
+#             request.session['user_{}_uname'.format(user.id)] = user.username
+#             request.session['user_{}_uemail'.format(user.id)] = user.email
+#             request.session['user_{}_upass'.format(user.id)] = user.password
+#             id = user.id
+#             url = "/hotellist/{}/{}".format(hl, id)
+#             messages.success(
+#                 request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
+#             return HttpResponseRedirect(url)
+#         else:
+#             messages.error(
+#                 request, 'you are not registered create account to login !')
+#             return render(request, 'login.html')
+#     return render(request, 'login.html')

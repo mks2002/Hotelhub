@@ -80,7 +80,9 @@ DATABASES = {
     }
 }
 
+
 # this is for postgree database....
+# for using the postgree sql database we have to change the hotelist model also which is given in the models.py file...
 # pip install psycopg2-binary
 DATABASES = {
     'default': {
