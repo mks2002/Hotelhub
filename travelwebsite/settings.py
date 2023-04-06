@@ -1,8 +1,10 @@
-# here I import the message to change its tag name error by danger so that it is suitable with bootstrap classname...
-from django.contrib import messages
+
 from pathlib import Path
 import os
 
+
+# here I import the message to change its tag name error by danger so that it is suitable with bootstrap classname...
+from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,16 +86,16 @@ DATABASES = {
 # this is for postgree database....
 # for using the postgree sql database we have to change the hotelist model also which is given in the models.py file...
 # pip install psycopg2-binary
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '7651930560',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '7651930560',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation

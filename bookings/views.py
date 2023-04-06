@@ -155,9 +155,10 @@ def details(request):
             try:
                 maindata = Bookinghotel.objects.get(id=detail_id)
             except ObjectDoesNotExist:
-                messages.error(request, 'the page you currrently looking for is not available..')
-                data1={'id':id,'url':url}
-                return render(request, 'error_page.html',data1)
+                messages.error(
+                    request, 'the page you currrently looking for is not available..')
+                data1 = {'id': id, 'url': url}
+                return render(request, 'error_page.html', data1)
             print(maindata)
             bool = (maindata.payment_status.lower() == 'unpaid')
             start = str(maindata.start)
@@ -194,4 +195,3 @@ def delete(request):
         messages.info(
             request, 'your order for mr. {} has been deleted successfully !'.format(customer_name))
         return HttpResponseRedirect(url)
-

@@ -31,7 +31,8 @@ def paymentpage(request):
             try:
                 maindata = Bookinghotel.objects.get(id=oid)
             except ObjectDoesNotExist:
-                messages.error(request, 'the page you currrently looking for is not available..')
+                messages.error(
+                    request, 'the page you currrently looking for is not available..')
                 url = "/dashboard/{}".format(id)
                 data1 = {'id': id, 'url': url}
                 return render(request, 'error_page.html', data1)

@@ -24,8 +24,8 @@ def hotellist(request, hotelstate, id):
     elif 'user_{}_uname'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session:
         user = Login.objects.get(username=request.session.get('user_{}_uname'.format(id)), email=request.session.get(
             'user_{}_uemail'.format(id)), password=request.session.get('user_{}_upass'.format(id)))
-        username = request.session['user_{}_uname'.format(user.id)]
-        password = request.session['user_{}_upass'.format(user.id)]
+        username = user.username
+        password = user.password
         if Login.objects.filter(username=username, password=password).exists():
             if hotelstate == "all":
                 data = Hotellist.objects.all().order_by('?')

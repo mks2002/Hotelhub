@@ -37,13 +37,14 @@ def signup(request):
         cpw = request.POST.get('cpassword')
 
         if pw != cpw:
-            messages.error(
-                request, 'password and confirm password must be same !')
+            messages.error(request, 'password and confirm password must be same !')
+            
+        elif len(pw)<8:
+            messages.warning(request,'password length must be of 8 digit !')    
         else:
             if Login.objects.filter(username=un).exists() | Login.objects.filter(email=email).exists():
                 messages.warning(
                     request, 'username or email already exist select another !')
-                return render(request, 'signup.html')
             else:
                 pw = make_password(pw)
                 maindata = Login(username=un, email=email, password=pw)
@@ -52,7 +53,6 @@ def signup(request):
                     request, 'you have registered succesfully, now you can login !')
                 url = '/login/'
                 return HttpResponseRedirect(url)
-
     return render(request, 'signup.html')
 
 
@@ -150,32 +150,3 @@ def update(request):
 
 
 # we can also create one update password after the login .....
-
-
-# this is wrong way to check the password here we cant compare like this for comparison we have to use check_password ....
-# @never_cache
-# def login(request):
-#     if request.method == "GET":
-#         messages.warning(request, 'for booking you need to login first !')
-#         return render(request, 'login.html')
-
-#     if request.method == "POST":
-#         un = request.POST.get('name')
-#         pw = request.POST.get('password')
-
-#         if Login.objects.filter(username=un, password=make_password(pw)).exists():
-#             hl = 'all'
-#             user = Login.objects.get(username=un, password=make_password(pw))
-#             request.session['user_{}_uname'.format(user.id)] = user.username
-#             request.session['user_{}_uemail'.format(user.id)] = user.email
-#             request.session['user_{}_upass'.format(user.id)] = user.password
-#             id = user.id
-#             url = "/hotellist/{}/{}".format(hl, id)
-#             messages.success(
-#                 request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
-#             return HttpResponseRedirect(url)
-#         else:
-#             messages.error(
-#                 request, 'you are not registered create account to login !')
-#             return render(request, 'login.html')
-#     return render(request, 'login.html')

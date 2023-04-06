@@ -46,19 +46,3 @@ def blog(request, id=None):
         else:
             return HttpResponseRedirect('/blogs/')
 
-
-# this is the blog page here we display the review of our customers ....
-# def blog(request):
-#     data = Review.objects.all()
-#     datamain = {'data': data}
-#     return render(request, 'blogs.html', datamain)
-
-# @never_cache
-# def blogid(request, id):
-#     if 'user_{}_uname'.format(id) not in request.session and 'user_{}_upass'.format(id) not in request.session:
-#         return HttpResponseRedirect('/blogs/')
-#     else:
-#         data = Review.objects.all()
-#         url = "/dashboard/{}".format(id)
-#         datamain = {'data': data, 'id': id, 'url': url}
-#         return render(request, 'blogs2.html', datamain)
