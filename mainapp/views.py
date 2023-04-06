@@ -121,8 +121,10 @@ def update(request):
         if Login.objects.filter(username=name).exists():
             main = Login.objects.get(username=name)
             oldpassword = main.password
-
-            if new == cnew:
+            if len(new)<8:
+                messages.warning(request,'your new password must be of atleast 8 digit !')
+            # here cnew is the newconfirm password....
+            elif new == cnew:
                 if check_password(new, oldpassword):
                     messages.warning(
                         request, 'your new password is to similar to old password select another !')
@@ -139,7 +141,6 @@ def update(request):
                         request, 'your password is updated successfully now you can login !')
                     url = '/login/'
                     return HttpResponseRedirect(url)
-
             else:
                 messages.error(
                     request, 'password and confirm password must be same !')

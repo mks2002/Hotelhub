@@ -7,3 +7,9 @@ some commands which you required to setup this in your local device
 5.  python manage.py migrate
 6.  python manage.py createsuperuser --> for creating the superuser to access the database of django admin.
 7.  python manage.py runserver --> for running the server.
+
+
+8.... Here in this i integrate 3 different databases which are sqlite (default), mysql and postgrees whenever which database we have to use just comment the rest database and change the hotellist image.....
+
+
+mysqlclient --> this module only we need to insall for connecting with mysql....

@@ -12,6 +12,11 @@
     padding:2%;
   }
 
+  .myimage {
+    border: 2.5px solid var(--secondary-color);
+    border-radius: 15px;
+    margin-right: 40px;
+  }
  
 </style>
 
@@ -171,6 +176,41 @@
     </div>
   </div>
 </div>
+<hr class="container" />
+
+<section id="about">
+  <div class="container">
+    <div class="row flex-lg-row flex-column-reverse mb-0 mt-3">
+      <div class="col-lg-6 text-center text-lg-start">
+        <h3>
+          Welcome to
+          <span>
+            Our Hotel <br class="d-none d-lg-block" />
+            We have
+          </span>
+          best world class hotels
+        </h3>
+        <p>
+          A good hotel website should allow people to create and confirm
+          bookings online. It is not simply a contact form, but rather an
+          online reservation system installed on the website. By having a
+          proper online reservation system, people can easily check for room
+          availability, price rate, and secure the booking with payment..
+        </p>
+        <p>
+          This involves organizing content with customers in mind and making
+          sure key information such as rooms and rates, amenities, contact
+          details and online bookings are never more than a single click
+          away.
+        </p>
+      </div>
+
+      <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center mt-4">
+        <img src="{% static 'images/bgcover.jpg' %}" class="img-fluid myimage" alt="About Us" />
+      </div>
+    </div>
+  </div>
+</section>
 <hr class="container" />
 
 <div class="container text-center mt-5">

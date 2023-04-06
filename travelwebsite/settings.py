@@ -72,9 +72,11 @@ WSGI_APPLICATION = 'travelwebsite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+#_________________________________________________________________________________________________________________
 
 # this is for dbsqlite database....
+# this is for dbsqlite database......
+# here the name tag is denoting the name of database of the database which we used in this project.....
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -82,10 +84,28 @@ DATABASES = {
     }
 }
 
+#_________________________________________________________________________________________________________________
+
+# this is for wamp server mysql database......
+# for using this database we need to do some changes in the main project folder init.py which we can see there....
+# 3306 is the default port for MySQL, which is the database management system used by phpMyAdmin. However, the default port for phpMyAdmin itself is usually 80 or 8080.......
+# pip install mysqlclient ---> this we have to install....
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'django_hotel_booking',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
+#_________________________________________________________________________________________________________________
 
 # this is for postgree database....
 # for using the postgree sql database we have to change the hotelist model also which is given in the models.py file...
-# pip install psycopg2-binary
+# pip install psycopg2-binary ---> this we have to install....
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -97,6 +117,7 @@ DATABASES = {
 #     }
 # }
 
+#_________________________________________________________________________________________________________________
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -160,3 +181,4 @@ MEDIA_URL = "/media/"
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
