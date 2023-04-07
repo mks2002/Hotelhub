@@ -8,10 +8,6 @@ from operator import not_
 # Create your views here.
 
 
-# session__id
-# order_id
-
-
 # this is for payment form page ..
 
 from django.views.decorators.cache import never_cache
