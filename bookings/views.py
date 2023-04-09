@@ -133,7 +133,7 @@ def dashboard(request, id):
 
 
 # this is for order details page.....
-# this is we do for override the django default error page by our custom message if we want we can change it by our custom error page also.....
+
 
 
 @never_cache
@@ -152,13 +152,14 @@ def details(request):
             password = request.session['user_{}_upass'.format(id)]
 
             url = "/dashboard/{}".format(id)
+            # this is we do for override the django default error page by our custom message if we want we can change it by our custom error page also.....
             try:
                 maindata = Bookinghotel.objects.get(id=detail_id)
             except ObjectDoesNotExist:
-                messages.error(
-                    request, 'the page you currrently looking for is not available..')
+                messages.error( request, 'the page you currrently looking for is not available..')
                 data1 = {'id': id, 'url': url}
                 return render(request, 'error_page.html', data1)
+            
             print(maindata)
             bool = (maindata.payment_status.lower() == 'unpaid')
             start = str(maindata.start)
@@ -173,15 +174,15 @@ def details(request):
         return render(request, 'order_details.html', data)
 
 # in each page context we have to pass the id value because it is the session key variable so we use this so that we can check if someone is logged in or logged out ...
-# return HttpResponse('sorry this page is currently does not exist!')
 
-# this page is for deleting the order....
+
+
 
 
 def delete_confirmation(request):
     pass
 
-
+# this page is for deleting the order....
 def delete(request):
     id = request.GET.get('session__id')
     if 'user_{}_uname'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session:

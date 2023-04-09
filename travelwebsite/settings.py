@@ -24,8 +24,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# for changing the default django-admin pannel....
+# pip install django-material-admin
+
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material',
+    'material.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
