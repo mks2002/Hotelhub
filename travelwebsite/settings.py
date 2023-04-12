@@ -77,24 +77,25 @@ WSGI_APPLICATION = 'travelwebsite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-#_________________________________________________________________________________________________________________
+# _________________________________________________________________________________________________________________
 
 # this is for dbsqlite database....
 # this is for dbsqlite database......
 # here the name tag is denoting the name of database of the database which we used in this project.....
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
-#_________________________________________________________________________________________________________________
+# _________________________________________________________________________________________________________________
 
 # this is for wamp server mysql database......
 # for using this database we need to do some changes in the main project folder init.py which we can see there....
 # 3306 is the default port for MySQL, which is the database management system used by phpMyAdmin. However, the default port for phpMyAdmin itself is usually 80 or 8080.......
 # pip install mysqlclient ---> this we have to install....
+# for working with this we also have to start all services of our wamp server otherwise it does not able to connect with wamp mysql ....
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -106,23 +107,23 @@ DATABASES = {
 #     }
 # }
 
-#_________________________________________________________________________________________________________________
+# _________________________________________________________________________________________________________________
 
 # this is for postgree database....
 # for using the postgree sql database we have to change the hotelist model also which is given in the models.py file...
 # pip install psycopg2-binary ---> this we have to install....
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '7651930560',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '7651930560',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
-#_________________________________________________________________________________________________________________
+# _________________________________________________________________________________________________________________
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -186,4 +187,3 @@ MEDIA_URL = "/media/"
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
-

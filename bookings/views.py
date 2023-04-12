@@ -15,6 +15,7 @@ from datetime import datetime as dt
 
 from bookings.models import Bookinghotel
 from payments.models import Paymentdetail
+from hotellist.models import Hotellist
 
 from mainapp.models import Login
 from django.contrib import messages
@@ -39,13 +40,24 @@ def bookings(request, id):
             hstate1 = request.GET.get('hstate')
             hcost1 = request.GET.get('hcost')
             image = request.GET.get('image_url')
-
-            # url = f"/dashboard/{id}"
-            url = "/dashboard/{}".format(id)
-            data1 = {'un1': un1, 'pw1': password1, 'em1': email1, 'hname1': hname1,
-                     'hcity1': hcity1, 'hstate1': hstate1, 'hcost1': hcost1, 'url': url, 'id': id, 'image': image}
-            return render(request, 'booking.html', data1)
-
+            if any(val is None for val in [hname1, hcity1, hstate1, hcost1, image]):
+                messages.error(request, 'Invailed url the page you are looking for is not available...')
+                url = f"/dashboard/{id}"
+                data1 = {'id': id, 'url': url}
+                return render(request, 'error_page.html', data1)
+            else:
+                prefix_to_remove = "/media/"
+                result_image = image[len(prefix_to_remove):]
+                if Hotellist.objects.filter(name=hname1, city=hcity1, state=hstate1, current_cost=hcost1, image=result_image).exists():
+                    url = "/dashboard/{}".format(id)
+                    data1 = {'un1': un1, 'pw1': password1, 'em1': email1, 'hname1': hname1,
+                             'hcity1': hcity1, 'hstate1': hstate1, 'hcost1': hcost1, 'url': url, 'id': id, 'image': image}
+                    return render(request, 'booking.html', data1)
+                else:
+                    messages.error(request, 'Invailed url the page you are looking for is not available...')
+                    url = f"/dashboard/{id}"
+                    data1 = {'id': id, 'url': url}
+                    return render(request, 'error_page.html', data1)
         try:
             if request.method == "POST":
                 name = request.POST.get('name')
@@ -135,7 +147,6 @@ def dashboard(request, id):
 # this is for order details page.....
 
 
-
 @never_cache
 def details(request):
     id = request.GET.get('session__id')
@@ -156,10 +167,11 @@ def details(request):
             try:
                 maindata = Bookinghotel.objects.get(id=detail_id)
             except ObjectDoesNotExist:
-                messages.error( request, 'the page you currrently looking for is not available..')
+                messages.error(
+                    request, 'the page you currrently looking for is not available..')
                 data1 = {'id': id, 'url': url}
                 return render(request, 'error_page.html', data1)
-            
+
             print(maindata)
             bool = (maindata.payment_status.lower() == 'unpaid')
             start = str(maindata.start)
@@ -176,13 +188,12 @@ def details(request):
 # in each page context we have to pass the id value because it is the session key variable so we use this so that we can check if someone is logged in or logged out ...
 
 
-
-
-
 def delete_confirmation(request):
     pass
 
 # this page is for deleting the order....
+
+
 def delete(request):
     id = request.GET.get('session__id')
     if 'user_{}_uname'.format(id) in request.session and 'user_{}_upass'.format(id) in request.session and 'user_{}_uemail'.format(id) in request.session:

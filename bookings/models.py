@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 
 
@@ -26,3 +27,23 @@ class Bookinghotel(models.Model):
     state = models.CharField(max_length=60, default=None)
     current_cost = models.FloatField(default=0.0)
     payment_status = models.CharField(max_length=50, default='Unpaid')
+
+
+# this model is for any queries of customers.....
+QUERY_CHOICE = (
+    ('Pending', 'Pending'),
+    ('Resolved', 'Resolved'),
+)
+
+
+class Query(models.Model):
+    username = models.CharField(max_length=50)
+    useremail = models.EmailField(max_length=50)
+    contact_no = models.CharField(max_length=13)
+    querydetails = models.TextField()
+    date = models.DateField(default=date.today)
+    querystatus = models.CharField(
+        choices=QUERY_CHOICE, max_length=50, default='Pending')
+
+
+# whenever we create this kind of new table we have to migrate them 3 times by changing the values of database in settings.py file then it will work in each database if we just migrate for only one database and then try to access this in other database then it gives error....

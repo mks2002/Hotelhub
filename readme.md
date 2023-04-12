@@ -9,6 +9,6 @@ some commands which you required to setup this in your local device
 7.  python manage.py runserver --> for running the server.
 
 
-8.... Here in this i integrate 3 different databases which are sqlite (default), mysql and postgrees whenever which database we have to use just comment the rest database and change the hotellist image.....
+8.... Here in this I integrate 3 different databases which are sqlite (default), mysql and postgrees whenever which database we have to use just comment the rest database and change the hotellist image.....
 
 

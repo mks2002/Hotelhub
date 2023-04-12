@@ -45,4 +45,3 @@ def blog(request, id=None):
             return render(request, 'blogs2.html', datamain)
         else:
             return HttpResponseRedirect('/blogs/')
-

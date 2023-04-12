@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='hotellist',
             name='image',
-            field=models.FileField(default=None, max_length=2500, null=True, upload_to='image_folder_mysql_wamp/'),
+            field=models.FileField(
+                default=None, max_length=2500, null=True, upload_to='image_folder_mysql_wamp/'),
         ),
     ]

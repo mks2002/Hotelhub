@@ -4,7 +4,7 @@ from django.contrib import admin
 
 
 from django.contrib.admin.sites import site
-from bookings.models import Bookinghotel
+from bookings.models import Bookinghotel, Query
 
 
 class BookinghotelAdmin(admin.ModelAdmin):
@@ -12,4 +12,10 @@ class BookinghotelAdmin(admin.ModelAdmin):
                     'hotelname', 'city', 'state', 'current_cost', 'payment_status', 'username', 'useremail', 'userpassword')
 
 
+class QueryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'username', 'useremail', 'contact_no',
+                    'querydetails', 'date', 'querystatus')
+
+
 admin.site.register(Bookinghotel, BookinghotelAdmin)
+admin.site.register(Query, QueryAdmin)

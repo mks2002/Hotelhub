@@ -34,7 +34,7 @@ hr {
    --text-white: #fff;
    --text-black: #151515;
    --text-gray: #e4e4e4;
-   --scrollbar-color:rgba(36, 27, 9, 0.83);
+   --scrollbar-color: rgba(36, 27, 9, 0.83);
 
 }
 
@@ -42,7 +42,7 @@ body {
    font-family: var(--primary-font);
    background-color: var(--bg-white);
    scroll-behavior: smooth;
-   
+
 }
 
 
@@ -846,6 +846,7 @@ body .travel table {
    padding-top: 1%;
 
    background-image: url('../images/bg4.jpg');
+   background-attachment: fixed;
    background-repeat: no-repeat;
    background-position: center center;
    background-size: cover;
@@ -858,6 +859,7 @@ body .travel table {
    padding-top: 1%;
    background-image: url('../images/bgcover2.png');
    background-repeat: no-repeat;
+   background-attachment: fixed;
    background-position: center center;
    background-size: cover;
    z-index: 0;
@@ -870,6 +872,7 @@ body .travel table {
    background-image: url('../images/bglogin.jpg');
    background-repeat: no-repeat;
    background-position: center center;
+   background-attachment: fixed;
    background-size: cover;
    z-index: 0;
    padding-bottom: 1%;
@@ -891,7 +894,7 @@ body .travel table {
 .mydiv {
    width: 90vw;
    height: 75vh;
-   
+
    position: relative;
    margin: auto;
    margin-top: 5vh;
