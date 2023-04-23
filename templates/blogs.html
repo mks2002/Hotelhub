@@ -122,16 +122,39 @@
 
     </div>
 
-    <hr class="container my-2">
-
+    <hr class="container mb-4">
+    
     <div class="row mt-3">
       <div class="col-sm-12 section-title text-center mb-2">
 
-        <h3 class="text-black"> Blogs Posted by Our users...</h3>
+        <h3 class="text-black"> Memories shared by our users...</h3>
       </div>
     </div>
 
-   
+    <div class="row p-3 py-2">
+
+      {% for m in memories %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card p-0 rounded-1">
+          <img src="{{m.image.url}}" alt="" />
+          <hr />
+          <div class="blog-content bg-white p-4">
+            <h5 class="text-decoration-underline mb-4">{{m.title}}</h5>
+            <h6>By {{m.username}} - {{m.date}}</h6>
+            <p class="mt-2">
+              {{m.about}}.
+            </p>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+
+    <hr class="container my-2">
+
 
 
   </div>

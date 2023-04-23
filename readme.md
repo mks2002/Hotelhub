@@ -12,3 +12,14 @@ some commands which you required to setup this in your local device
 8.... Here in this I integrate 3 different databases which are sqlite (default), mysql and postgrees whenever which database we have to use just comment the rest database and change the hotellist image.....
 
 
+
+
+pip install --upgrade pip
+python.exe -m pip install --upgrade pip ....
+
+updating the version of pip ----> using above 2 commands....
+
+
+
+django paypal --> require pytz package..
+requests module --> require idna charset-normalizer ..

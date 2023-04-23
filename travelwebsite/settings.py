@@ -82,12 +82,12 @@ WSGI_APPLICATION = 'travelwebsite.wsgi.application'
 # this is for dbsqlite database....
 # this is for dbsqlite database......
 # here the name tag is denoting the name of database of the database which we used in this project.....
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # _________________________________________________________________________________________________________________
 
@@ -112,16 +112,16 @@ WSGI_APPLICATION = 'travelwebsite.wsgi.application'
 # this is for postgree database....
 # for using the postgree sql database we have to change the hotelist model also which is given in the models.py file...
 # pip install psycopg2-binary ---> this we have to install....
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '7651930560',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '7651930560',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # _________________________________________________________________________________________________________________
 
