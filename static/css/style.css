@@ -40,7 +40,7 @@ hr {
 
 body {
    font-family: var(--primary-font);
-   background-color: var(--bg-white);
+   background-color: white !important;
    scroll-behavior: smooth;
 
 }
