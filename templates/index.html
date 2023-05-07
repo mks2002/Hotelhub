@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %}
+ {% load static %}
 
 
 
@@ -7,12 +8,9 @@
 <section id="home" class="banner_wrapper p-0">
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      <div
-        class="swiper-slide"
-        style="
+      <div class="swiper-slide" style="
           background-image: url('{% static 'images/slider/slide5.webp' %}');
-        "
-      >
+        ">
         <div class="slide-caption text-center">
           <div>
             <h1>Welcome to hotels in GOA </h1>
@@ -25,12 +23,9 @@
         </div>
       </div>
 
-      <div
-        class="swiper-slide"
-        style="
+      <div class="swiper-slide" style="
           background-image: url('{% static 'images/slider/slider2.webp' %}');
-        "
-      >
+        ">
         <div class="slide-caption text-center">
           <div>
             <h1>Welcome to hotels in KERALA</h1>
@@ -42,10 +37,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="swiper-slide"
-        style="background-image: url('{% static 'images/slider/slide7.jpg' %}')"
-      >
+      <div class="swiper-slide" style="background-image: url('{% static 'images/slider/slide7.jpg' %}')">
         <div class="slide-caption text-center">
           <div>
             <h1>Welcome to hotels in SRINAGAR & LADAKH</h1>
@@ -58,10 +50,7 @@
         </div>
       </div>
 
-      <div
-        class="swiper-slide"
-        style="background-image: url('{% static 'images/slider/slide3.jpg' %}')"
-      >
+      <div class="swiper-slide" style="background-image: url('{% static 'images/slider/slide3.jpg' %}')">
         <div class="slide-caption text-center">
           <div>
             <h1>Welcome to hotels in RAJASTHAN & GUJRAT</h1>
@@ -74,10 +63,7 @@
         </div>
       </div>
 
-      <div
-        class="swiper-slide"
-        style="background-image: url('{% static 'images/slider/slide6.jpg' %}')"
-      >
+      <div class="swiper-slide" style="background-image: url('{% static 'images/slider/slide6.jpg' %}')">
         <div class="slide-caption text-center">
           <div>
             <h1>Welcome to hotels in SHIMLA</h1>
@@ -141,10 +127,8 @@
       <div class="col-lg-6 text-center text-lg-start">
         <h3>
           Welcome to
-          <span
-            >Hotel <br class="d-none d-lg-block" />
-            the haven</span
-          >
+          <span>Hotel <br class="d-none d-lg-block" />
+            the haven</span>
           of your weekend
         </h3>
         <p>
@@ -164,11 +148,7 @@
       </div>
 
       <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center">
-        <img
-          src="{% static 'images/about-img.svg'  %}"
-          class="img-fluid"
-          alt="About Us"
-        />
+        <img src="{% static 'images/about-img.svg'  %}" class="img-fluid" alt="About Us" />
       </div>
     </div>
   </div>
@@ -189,11 +169,7 @@
     <div class="row m-0">
       <div class="col-md-4 mb-4 mb-lg-0">
         <div class="room-item">
-          <img
-            src="{% static './images/room/room1.webp' %}"
-            alt=""
-            class="img-fluid g-0"
-          />
+          <img src="{% static './images/room/room1.webp' %}" alt="" class="img-fluid g-0" />
 
           <div class="room-item-wrap">
             <div class="room-content">
@@ -205,11 +181,7 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a
-                class="main-btn border-white text-white mt-lg-5"
-                href="{% url 'service'%}"
-                >Book now</a
-              >
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}">Book now</a>
             </div>
           </div>
         </div>
@@ -228,11 +200,7 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a
-                class="main-btn border-white text-white mt-lg-5"
-                href="{% url 'service'%}"
-                >Book now</a
-              >
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}">Book now</a>
             </div>
           </div>
         </div>
@@ -240,11 +208,7 @@
 
       <div class="col-md-4 mb-4 mb-lg-0">
         <div class="room-item">
-          <img
-            src="{% static './images/room/room3.webp' %}"
-            alt=""
-            class="img-fluid"
-          />
+          <img src="{% static './images/room/room3.webp' %}" alt="" class="img-fluid" />
           <div class="room-item-wrap">
             <div class="room-content">
               <h5 class="text-white mb-lg-5 text-decoration-underline">
@@ -255,11 +219,7 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a
-                class="main-btn border-white text-white mt-lg-5"
-                href="{% url 'service'%}"
-                >Book now</a
-              >
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}">Book now</a>
             </div>
           </div>
         </div>
@@ -268,9 +228,7 @@
 
     <div class="row">
       <div class="col-sm-12 mycenter">
-        <a href="{% url 'service' %}" class="main-btn mt-2"
-          >View all services</a
-        >
+        <a href="{% url 'service' %}" class="main-btn mt-2">View all services</a>
       </div>
     </div>
   </div>
@@ -317,10 +275,7 @@
             <li>
               <a data-bs-toggle="tab" href="#spa" class="active">
                 <span class="service-icon">
-                  <img
-                    src="{% static './images/services/service-icon1.webp' %}"
-                    alt=""
-                  />
+                  <img src="{% static './images/services/service-icon1.webp' %}" alt="" />
                 </span>
 
                 <h5>Spa, beauty & Health</h5>
@@ -334,10 +289,7 @@
             <li>
               <a data-bs-toggle="tab" href="#restaurent">
                 <span class="service-icon">
-                  <img
-                    src="{% static './images/services/service-icon2.webp' %}"
-                    alt=""
-                  />
+                  <img src="{% static './images/services/service-icon2.webp' %}" alt="" />
                 </span>
                 <h5>Restaurant</h5>
                 <p>
@@ -349,10 +301,7 @@
             <li>
               <a data-bs-toggle="tab" href="#swimming">
                 <span class="service-icon">
-                  <img
-                    src="{% static './images/services/service-icon3.webp' %}"
-                    alt=""
-                  />
+                  <img src="{% static './images/services/service-icon3.webp' %}" alt="" />
                 </span>
                 <h5>Swimming Pool</h5>
                 <p>
@@ -365,10 +314,7 @@
             <li>
               <a data-bs-toggle="tab" href="#conference">
                 <span class="service-icon">
-                  <img
-                    src="{% static './images/services/service-icon4.webp' %}"
-                    alt=""
-                  />
+                  <img src="{% static './images/services/service-icon4.webp' %}" alt="" />
                 </span>
                 <h5>Conference Hall</h5>
                 <p>
@@ -424,11 +370,7 @@
     <div class="row">
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card p-0 rounded-3">
-          <img
-            src="{% static 'images/team/team1.webp' %}"
-            alt=""
-            class="img-fluid rounded-3"
-          />
+          <img src="{% static 'images/team/team1.webp' %}" alt="" class="img-fluid rounded-3" />
           <div class="team-info">
             <h5>Shirley Gibson</h5>
             <p>Manager</p>
@@ -452,11 +394,7 @@
 
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card p-0 rounded-3">
-          <img
-            src="{% static 'images/team/team2.webp' %}"
-            alt=""
-            class="img-fluid rounded-3"
-          />
+          <img src="{% static 'images/team/team2.webp' %}" alt="" class="img-fluid rounded-3" />
           <div class="team-info">
             <h5>Ronald Long</h5>
             <p>Chif Reciption Officer</p>
@@ -479,11 +417,7 @@
       </div>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card p-0 rounded-3">
-          <img
-            src="{% static 'images/team/team3.webp' %}"
-            alt=""
-            class="img-fluid rounded-3"
-          />
+          <img src="{% static 'images/team/team3.webp' %}" alt="" class="img-fluid rounded-3" />
           <div class="team-info">
             <h5>Ashley Sanchez</h5>
             <p>Master Chef</p>
@@ -506,11 +440,7 @@
       </div>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card p-0 rounded-3">
-          <img
-            src="{% static 'images/team/team4.webp' %}"
-            alt=""
-            class="img-fluid rounded-3"
-          />
+          <img src="{% static 'images/team/team4.webp' %}" alt="" class="img-fluid rounded-3" />
           <div class="team-info">
             <h5>Jessica Watson</h5>
             <p>Housekeeping</p>
@@ -534,9 +464,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12 mycenter">
-        <a href="{% url 'staffs'%}" class="main-btn mt-2"
-          >View all staffs and team members</a
-        >
+        <a href="{% url 'staffs'%}" class="main-btn mt-2">View all staffs and team members</a>
       </div>
     </div>
   </div>
@@ -557,54 +485,30 @@
     <!-- here g-0 is for removing the gap between the images in row container it is a bootstrap class which removes the by default gapping between the images in row.. -->
     <div class="row g-0">
       <div class="col-lg-3 col-md-6 gallery-item">
-        <img
-          src="{% static './images/gallery/1.webp' %}"
-          alt=""
-          class="img-fluid w-100"
-        />
+        <img src="{% static './images/gallery/1.webp' %}" alt="" class="img-fluid w-100" />
         <!-- the effect on hover is due to this div.... -->
         <div class="gallery-item-content"></div>
       </div>
 
       <div class="col-lg-3 col-md-6 gallery-item">
-        <img
-          src="{% static './images/gallery/2.webp' %}"
-          alt=""
-          class="img-fluid w-100"
-        />
+        <img src="{% static './images/gallery/2.webp' %}" alt="" class="img-fluid w-100" />
         <div class="gallery-item-content"></div>
       </div>
       <div class="col-lg-3 col-md-6 gallery-item">
-        <img
-          src="{% static './images/gallery/3.webp' %}"
-          alt=""
-          class="img-fluid w-100"
-        />
+        <img src="{% static './images/gallery/3.webp' %}" alt="" class="img-fluid w-100" />
         <div class="gallery-item-content"></div>
       </div>
       <div class="col-lg-3 col-md-6 gallery-item">
-        <img
-          src="{% static './images/gallery/4.webp' %}"
-          alt=""
-          class="img-fluid w-100"
-        />
+        <img src="{% static './images/gallery/4.webp' %}" alt="" class="img-fluid w-100" />
         <div class="gallery-item-content"></div>
       </div>
 
       <div class="col-md-6 gallery-item">
-        <img
-          src="{% static './images/gallery/5.webp' %}"
-          alt=""
-          class="img-fluid w-100"
-        />
+        <img src="{% static './images/gallery/5.webp' %}" alt="" class="img-fluid w-100" />
         <div class="gallery-item-content"></div>
       </div>
       <div class="col-md-6 gallery-item">
-        <img
-          src="{% static './images/gallery/6.webp' %}"
-          alt=""
-          class="img-fluid w-100"
-        />
+        <img src="{% static './images/gallery/6.webp' %}" alt="" class="img-fluid w-100" />
         <div class="gallery-item-content"></div>
       </div>
     </div>
@@ -713,7 +617,10 @@
     </div>
   </div>
 </section>
-{% endblock content1 %} {% block content3 %}
+{% endblock content1 %}
+
+
+{% block content3 %}
 
 <div class="container">
   <div class="row">

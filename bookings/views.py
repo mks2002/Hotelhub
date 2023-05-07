@@ -12,7 +12,7 @@ from datetime import datetime as dt
 
 # this are all our models which we used in this section..
 
-from bookings.models import Bookinghotel
+from bookings.models import Bookinghotel, Query
 from payments.models import Paymentdetail
 from hotellist.models import Hotellist
 
@@ -179,6 +179,7 @@ def dashboard(request, id):
             tabel = Bookinghotel.objects.filter(
                 username=username, userpassword=password
             )
+            queries=Query.objects.filter(username=username,useremail=useremail)
             hotelurl = '/hotellist/{}/{}'.format('all', id)
             reviewurl = '/review/{}'.format(id)
             # this url is for dashboard page itself ....
@@ -189,6 +190,7 @@ def dashboard(request, id):
                 'pw': password,
                 'id': id,
                 'maindata': tabel,
+                'querydata':queries,
                 'hotelurl': hotelurl,
                 'reviewurl': reviewurl,
                 'url': url,
@@ -259,13 +261,34 @@ def details(request):
 
 # in each page context we have to pass the id value because it is the session key variable so we use this so that we can check if someone is logged in or logged out ...
 
-
+@never_cache
 def delete_confirmation(request):
-    pass
+    id=request.GET.get('session__id')
+    if (
+        'user_{}_uname'.format(id) in request.session
+        and 'user_{}_upass'.format(id) in request.session
+        and 'user_{}_uemail'.format(id) in request.session
+    ):
+        
+        url = '/dashboard/{}'.format(id)
+        orderid=request.GET.get('id1')
+        if Bookinghotel.objects.filter(id=orderid).exists():
+            data={'id':id,'orderid':orderid,'url':url}
+            return render(request,'delete_confirmation.html',data)
+        else:
+            messages.error(request, 'the page you currrently looking for is not available..')
+            data1 = {'id': id, 'url': url}
+            return render(request, 'error_page.html', data1)
+            # return HttpResponseRedirect(url)
+    else:
+         return HttpResponseRedirect('/login/')
+        
+    
+    
 
 
 # this page is for deleting the order......
-
+@never_cache
 def delete(request):
     id = request.GET.get('session__id')
     if (
@@ -290,8 +313,44 @@ def delete(request):
             ),
         )
         return HttpResponseRedirect(url)
+    else:
+        return HttpResponseRedirect('/login/')
+        
 
 
 @never_cache
 def query(request, id):
-    return render(request, 'queryform.html')
+    if (
+        'user_{}_uname'.format(id) not in request.session
+        and 'user_{}_upass'.format(id) not in request.session
+        and 'user_{}_uemail'.format(id) not in request.session
+    ):
+        return HttpResponseRedirect('/login/')
+    elif (
+        'user_{}_uname'.format(id) in request.session
+        and 'user_{}_uemail'.format(id) in request.session
+        and 'user_{}_upass'.format(id) in request.session
+    ):
+        username = request.session['user_{}_uname'.format(id)]
+        password = request.session['user_{}_upass'.format(id)]
+        emailid =  request.session['user_{}_uemail'.format(id)]
+        url = '/dashboard/{}'.format(id)
+        data = {'un': username, 'url': url, 'id': id, 'email':emailid}
+        
+        if request.method =='GET':
+            messages.warning(request,'here you can ask your quaries..')
+            return render(request, 'queryForm.html', data)
+
+        if request.method == 'POST':
+            name = request.POST.get('username')
+            email=request.POST.get('email')
+            contact=request.POST.get('contact')
+            query=request.POST.get('query')
+            data=Query(username=name,useremail=email,contact_no=contact,querydetails=query)
+            data.save()
+            url = '/dashboard/{}'.format(id)
+            messages.info(request, 'your query is added successfully, we will resolve it soon, please wait for response !')
+            data = {'un': username, 'url': url, 'id': id}
+            return HttpResponseRedirect(url)
+
+

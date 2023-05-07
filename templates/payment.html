@@ -128,6 +128,10 @@
   <a class="{% if request.path == '/hotellist/all/'|add:id  or request.path == '/hotellist/goa/'|add:id or request.path == '/hotellist/kerala/'|add:id or request.path == '/hotellist/jammu kashmir/'|add:id or request.path == '/hotellist/Rajasthan/'|add:id or request.path == '/hotellist/Himachal pradesh/'|add:id or request.path == '/hotellist/others/'|add:id  %}active{% endif %} nav-link " href="{% url 'hotellist' 'all' id %}">Hotels & resorts</a>
 </li>
 
+<li class="nav-item">
+  <a class="nav-link " href="{% url 'logout' id %}">Logout</a>
+</li>
+
 <li class="nav-item mt-3 mt-lg-0">
 
 <a href="{{url}}" class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}">Dashboard</a>

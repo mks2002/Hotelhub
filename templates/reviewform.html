@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %} {% block style %}
+{% extends 'base.html' %}
+ {% load static %}
+ {% block style %}
 <style>
   * {
     padding: 0;
@@ -50,149 +52,103 @@
     display: none;
   }
 </style>
-{% endblock style %} {% block navlogo %}
+{% endblock style %} 
+
+{% block navlogo %}
 <a class="navbar-brand" href="{% url 'home' id %}">
   <img src="{% static './images/logo.png' %}" class="img-fluid" alt="logo" />
 </a>
 
-{% endblock navlogo %} {% block navbar %}
+{% endblock navlogo %}
+
+{% block navbar %}
 
 <li class="nav-item">
-  <a
-    class="nav-link {% if request.path == '/'|add:id %}active {% endif %}"
-    aria-current="page"
-    href="{% url 'home' id %}"
-    >Home</a
-  >
+  <a class="nav-link {% if request.path == '/'|add:id %}active {% endif %}" aria-current="page"
+    href="{% url 'home' id %}">Home</a>
 </li>
 
 <li class="nav-item">
-  <a
-    class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}"
-    href="{% url 'about' id%}"
-    >About</a
-  >
+  <a class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}" href="{% url 'about' id%}">About</a>
 </li>
 
 <li class="nav-item">
-  <a
-    class="nav-link {% if request.path == '/services/'|add:id %}active {% endif %}"
-    href="{% url 'service' id %}"
-    >Services</a
-  >
+  <a class="nav-link {% if request.path == '/services/'|add:id %}active {% endif %}"
+    href="{% url 'service' id %}">Services</a>
 </li>
 
 <li class="nav-item">
-  <a
-    class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
-    href="{% url 'staffs' id%}"
-    >Staffs</a
-  >
+  <a class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
+    href="{% url 'staffs' id%}">Staffs</a>
 </li>
 
 <li class="nav-item">
-  <a
-    class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}"
-    href="{% url 'blog' id%}"
-    >Blogs</a
-  >
+  <a class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}" href="{% url 'blog' id%}">Blogs</a>
 </li>
 
 <li class="nav-item">
-  <a
-    class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
-    href="{% url 'travel' id%}"
-    >Traindetails</a
-  >
+  <a class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
+    href="{% url 'travel' id%}">Traindetails</a>
 </li>
 
 <li class="nav-item">
-  <a
-    class="{% if request.path == '/hotellist/all/'|add:id or request.path == '/hotellist/goa/'|add:id or request.path == '/hotellist/kerala/'|add:id or request.path == '/hotellist/jammu kashmir/'|add:id or request.path == '/hotellist/Rajasthan/'|add:id or request.path == '/hotellist/Himachal pradesh/'|add:id or request.path == '/hotellist/others/'|add:id %}active{% endif %} nav-link"
-    href="{% url 'hotellist' 'all' id %}"
-    >Hotels & resorts</a
-  >
+  <a class="{% if request.path == '/hotellist/all/'|add:id or request.path == '/hotellist/goa/'|add:id or request.path == '/hotellist/kerala/'|add:id or request.path == '/hotellist/jammu kashmir/'|add:id or request.path == '/hotellist/Rajasthan/'|add:id or request.path == '/hotellist/Himachal pradesh/'|add:id or request.path == '/hotellist/others/'|add:id %}active{% endif %} nav-link"
+    href="{% url 'hotellist' 'all' id %}">Hotels & resorts</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link " href="{% url 'logout' id %}">Logout</a>
 </li>
 
 <li class="nav-item mt-3 mt-lg-0">
-  <a
-    href="{{url}}"
-    class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}"
-    >Dashboard</a
-  >
+  <a href="{{url}}" class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}">Dashboard</a>
 </li>
 
 {% endblock navbar %}
- {% block content1 %}
+
+{% block content1 %}
 <div class="bgsign">
   <section class="From my-4 mx-5">
     <div class="container">
       <div class="row no-gutters row111">
         <div class="col-lg-6 d-flex align-items-center">
           {% block image %}
-          <img
-            src="{% static '/images/review2.avif' %}"
-            class="img-fluid"
-            alt=""
-          />
+          <img src="{% static '/images/review.jpg' %}" class="img-fluid" alt="" />
           {% endblock image %}
         </div>
 
         <div class="col-lg-6 px-5 pt-5">
-          <h4>We always respect your reviews</h4>
+          <h4>We always respect your feedback</h4>
 
           <div class="container">
             {% if messages %} {% for message in messages %}
 
-            <div
-              class="alert alert-{{message.tags}} alert-dismissible fade show"
-              role="alert"
-            >
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
               <strong>{{ message }}</strong>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
-            {% endfor %} {% endif %} {% block formdata %}
+            {% endfor %}
+            {% endif %}
+
+            {% block formdata %}
             <form method="POST">
               {% csrf_token %}
               <div class="hide">
                 <div class="form-row">
                   <div class="col-lg-12 d-flex">
-                    <input
-                      type="text"
-                      placeholder="Username"
-                      name="username"
-                      value="{{un}}"
-                      required
-                      class="form-control my-3 p-2"
-                    />
+                    <input type="text" placeholder="Username" name="username" value="{{un}}" required
+                      class="form-control my-3 p-2" />
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-12">
-                  <textarea
-                    type="text"
-                    placeholder="write your review here"
-                    name="review"
-                    required
-                    class="form-control my-3 p-3"
-                    rows="4"
-                  ></textarea>
+                  <textarea type="text" placeholder="write your review here" name="review" required
+                    class="form-control my-3 p-3" rows="4"></textarea>
                 </div>
                 <div class="col-lg-12">
-                  <input
-                    type="number"
-                    placeholder="ratings"
-                    name="ratings"
-                    required
-                    class="form-control my-3 p-3"
-                  />
+                  <input type="number" placeholder="ratings" name="ratings" required class="form-control my-3 p-3" />
                 </div>
               </div>
 
@@ -213,7 +169,8 @@
   </section>
 </div>
 {% endblock content1 %}
- {% block javascript_files %}
+
+{% block javascript_files %}
 
 <script src="{% static 'js/main2.js' %}"></script>
 

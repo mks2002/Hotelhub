@@ -36,11 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mainapp',
     'bookings',
     'hotellist',
-    'userreview',
+    'mainapp',
     'payments',
+    'userreview',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +93,7 @@ DATABASES = {
 
 # this is for wamp server mysql database......
 # for using this database we need to do some changes in the main project folder init.py which we can see there....
-# 3306 is the default port for MySQL, which is the database management system used by phpMyAdmin. However, the default port for phpMyAdmin itself is usually 80 or 8080.......
+# 3306 is the default port for MySQL, which is  used by phpMyAdmin. However, the default port for phpMyAdmin itself is usually 80 or 8080.......
 # pip install mysqlclient ---> this we have to install....
 # for working with this we also have to start all services of our wamp server otherwise it does not able to connect with wamp mysql ....
 # DATABASES = {

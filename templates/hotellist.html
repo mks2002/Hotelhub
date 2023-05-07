@@ -55,6 +55,10 @@
     href="{% url 'hotellist' 'all' id %}">Hotels & resorts</a>
 </li>
 
+<li class="nav-item">
+  <a class="nav-link " href="{% url 'logout' id %}">Logout</a>
+</li>
+
 <li class="nav-item mt-3 mt-lg-0">
 
   <a href="{{url}}" class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}">Dashboard</a>
@@ -158,6 +162,7 @@
       {% for d in data %}
 
       <div class="col-lg-4 col-md-4 mb-lg-5 mb-4">
+
         <div class="card pb-2 noteCard">
           {% comment %} <img src="/media/{{d.image}}" class="img-fluid" alt="" /> {% endcomment %}
           <img src="{{d.image.url}}" class="img-fluid" alt="" />
@@ -268,7 +273,7 @@
       elem.style.display = 'block';
     }
 
-
+ 
   }
 
 

@@ -118,7 +118,8 @@ def logout_user(request, id):
         del request.session['user_{}_uname'.format(user.id)]
         del request.session['user_{}_uemail'.format(user.id)]
         del request.session['user_{}_upass'.format(user.id)]
-        request.session.flush()
+        # if we use this method then if in same browser one 2 or more user logged in and any 1 one of them will logged out then all the sessions keys are destroyed and all the users are logged out automatically...
+        # request.session.flush()
         request.session.clear_expired()
         messages.info(request, 'you are logged out !')
     return HttpResponseRedirect('/login/')

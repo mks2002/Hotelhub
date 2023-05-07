@@ -1,5 +1,8 @@
 from django.conf.urls.static import static
 from django.conf import settings
+# this 2 import is for using the media...
+
+
 from django.contrib import admin
 from django.urls import path
 
@@ -19,6 +22,7 @@ admin.site.site_title = "Hotel administration and managment"
 admin.site.index_title = "Hotel administration and managment"
 
 
+# for error page we dont create any url we just render it when any of the requested url is not match with this below defined error.....
 
 
 urlpatterns = [
@@ -46,7 +50,10 @@ urlpatterns = [
     path('update/', v1.update, name='update'),
     path('signup/', v1.signup, name='signup'),
     path('dashboard/<id>', v2.dashboard, name='dashboard'),
-    path('dashboard/delete/', v2.delete, name='delete'),
+    
+    path('dashboard/deleteConfirmation/', v2.delete_confirmation, name='delete'),
+    path('dashboard/deleteConfirmation/delete/', v2.delete, name='delete'),
+    
     path('hotellist/<hotelstate>/<id>', v3.hotellist, name='hotellist'),
     path('details/', v2.details, name='order_details'),
 
@@ -54,6 +61,7 @@ urlpatterns = [
     path('logout/<id>/', v1.logout_user, name='logout'),
 
     path('review/<id>', v5.review, name='review'),
+    
     path('memories/<id>', v5.memory, name='memory'),
     path('quaries/<id>', v2.query, name='query')
 

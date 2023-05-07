@@ -26,6 +26,10 @@ def review(request, id):
         password = request.session['user_{}_upass'.format(id)]
         url = '/dashboard/{}'.format(id)
         data = {'un': username, 'url': url, 'id': id}
+        # this return is work for default method which is get...    
+        if request.method=='GET':
+            messages.warning(request,'here you can add your feedback..')
+            return render(request, 'reviewform.html', data)
 
         if request.method == 'POST':
             name = request.POST.get('username')
@@ -34,10 +38,11 @@ def review(request, id):
             data = Review(username=name, user_review=review, ratings=ratings)
             data.save()
             url = '/dashboard/{}'.format(id)
-            messages.success(request, 'your review is added successfully !')
+            messages.success(request, 'your review is added successfully, that is visible in our blog page. !')
             data = {'un': username, 'url': url, 'id': id}
-        return render(request, 'reviewform.html', data)
-
+            return HttpResponseRedirect(url)
+    
+    
 
 @never_cache
 def blog(request, id=None):
@@ -60,6 +65,36 @@ def blog(request, id=None):
         else:
             return HttpResponseRedirect('/blogs/')
 
-
+@never_cache
 def memory(request, id):
-    return HttpResponse('this is memory page..')
+    if (
+        'user_{}_uname'.format(id) not in request.session
+        and 'user_{}_upass'.format(id) not in request.session
+        and 'user_{}_uemail'.format(id) not in request.session
+    ):
+        return HttpResponseRedirect('/login/')
+    elif (
+        'user_{}_uname'.format(id) in request.session
+        and 'user_{}_uemail'.format(id) in request.session
+        and 'user_{}_upass'.format(id) in request.session
+    ):
+        username = request.session['user_{}_uname'.format(id)]
+        password = request.session['user_{}_upass'.format(id)]
+        url = '/dashboard/{}'.format(id)
+        data = {'un': username, 'url': url, 'id': id}
+        
+        if request.method =='GET':
+            messages.warning(request,'here you can share your memories..')
+            return render(request, 'memoryshareForm.html', data)
+
+        if request.method == 'POST':
+            name = request.POST.get('username')
+            title = request.POST.get('title')
+            about = request.POST.get('about')
+            image = request.FILES['image']
+            data = Memory(username=name, title=title, about=about,image=image)
+            data.save()
+            url = '/dashboard/{}'.format(id)
+            messages.success(request, 'your memory is added successfully that is visible in our blog page !')
+            data = {'un': username, 'url': url, 'id': id}
+            return HttpResponseRedirect(url)
