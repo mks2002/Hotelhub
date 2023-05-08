@@ -120,6 +120,9 @@ def bookings(request, id):
                 elif start > end:
                     messages.warning( request, 'your ending date must be more than start date !')
                     return render(request, 'booking.html', data1)
+                elif start ==end:
+                    messages.warning(request,'your minimum booking date must be greater than 1 day !')
+                    return render(request,'booking.html',data1)
                 else:
                     data = Bookinghotel(
                         firstname=name,
