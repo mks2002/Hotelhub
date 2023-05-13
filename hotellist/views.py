@@ -14,6 +14,7 @@ from mainapp.models import Login
 # from mainapp.models import Login
 # from bookings.models import Bookinghotel
 from django.views.decorators.cache import never_cache
+from django.contrib.auth.decorators import login_required
 
 
 @never_cache

@@ -176,18 +176,18 @@ def dashboard(request, id):
         username = request.session['user_{}_uname'.format(id)]
         useremail = request.session['user_{}_uemail'.format(id)]
         password = request.session['user_{}_upass'.format(id)]
-        if Login.objects.filter(
-            username=username, email=useremail, password=password
-        ).exists():
-            tabel = Bookinghotel.objects.filter(
+        
+        tabel = Bookinghotel.objects.filter(
                 username=username, userpassword=password
             )
-            queries=Query.objects.filter(username=username,useremail=useremail)
-            hotelurl = '/hotellist/{}/{}'.format('all', id)
-            reviewurl = '/review/{}'.format(id)
+        queries=Query.objects.filter(username=username,useremail=useremail)
+        # print(queries)
+        print(tabel)
+        hotelurl = '/hotellist/{}/{}'.format('all', id)
+        reviewurl = '/review/{}'.format(id)
             # this url is for dashboard page itself ....
-            url = '/dashboard/{}'.format(id)
-            data = {
+        url = '/dashboard/{}'.format(id)
+        data = {
                 'un': username,
                 'uem': useremail,
                 'pw': password,
@@ -198,8 +198,10 @@ def dashboard(request, id):
                 'reviewurl': reviewurl,
                 'url': url,
             }
-            return render(request, 'dashboard.html', data)
         return render(request, 'dashboard.html', data)
+        
+            
+        
 
 
 # this is for order details page.....
@@ -243,7 +245,7 @@ def details(request):
             bool = maindata.payment_status.lower() == 'unpaid'
             start = str(maindata.start)
             end = str(maindata.end)
-            res = (dt.strptime(end, '%Y-%m-%d') - dt.strptime(start, '%Y-%m-%d')).days
+            res = (dt.strptime(end, '%Y-%m-%d') - dt.strptime(start, '%Y-%m-%d')).days+1
             total_cost = res * maindata.current_cost * maindata.no_rooms
             data = {
                 'un': un,

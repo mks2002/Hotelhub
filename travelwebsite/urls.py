@@ -71,8 +71,7 @@ urlpatterns = [
 # in all the urls which id we used that is basically the id for getting the session key ...
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # this are the pages which comes after login ...

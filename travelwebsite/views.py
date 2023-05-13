@@ -94,18 +94,19 @@ def travel(request, id=None):
         try:
             if request.method == 'POST':
                 id1 = request.POST.get('source')
-                url = "https://trains.p.rapidapi.com/"
+                url = 'https://trains.p.rapidapi.com/'
 
-                payload = {"search": id1}
+                payload = {'search': id1}
                 headers = {
-                    "content-type": "application/json",
-                    "X-RapidAPI-Key": "a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b0",
-                    "X-RapidAPI-Host": "trains.p.rapidapi.com",
+                    'content-type': 'application/json',
+                    'X-RapidAPI-Key': 'a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b4a0',
+                    'X-RapidAPI-Host': 'trains.p.rapidapi.com',
                 }
 
-                response = requests.request("POST", url, json=payload, headers=headers)
+                response = requests.request('POST', url, json=payload, headers=headers)
                 datamain = response.json()
                 data = {'datamain': datamain}
+                # print(datamain)
                 return render(request, 'travel_details.html', data)
         except Exception as e:
             pass
@@ -121,17 +122,17 @@ def travel(request, id=None):
             try:
                 if request.method == 'POST':
                     id1 = request.POST.get('source')
-                    url = "https://trains.p.rapidapi.com/"
+                    url = 'https://trains.p.rapidapi.com/'
 
-                    payload = {"search": id1}
+                    payload = {'search': id1}
                     headers = {
-                        "content-type": "application/json",
-                        "X-RapidAPI-Key": "a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b4a0",
-                        "X-RapidAPI-Host": "trains.p.rapidapi.com",
+                        'content-type': 'application/json',
+                        'X-RapidAPI-Key': 'a78e10f741mshff5ec54a01b89afp1e0ae3jsnfdbc5239b4a0',
+                        'X-RapidAPI-Host': 'trains.p.rapidapi.com',
                     }
 
                     response = requests.request(
-                        "POST", url, json=payload, headers=headers
+                        'POST', url, json=payload, headers=headers
                     )
                     datamain = response.json()
                     url = '/dashboard/{}'.format(id)
