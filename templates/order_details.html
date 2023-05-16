@@ -192,7 +192,7 @@
         <h3>
           Welcome to
           <span>
-            Our Hotel <br class="d-none d-lg-block" />
+            Our {{maindata.hotelname}}  <br class="d-none d-lg-block" />
             We have
           </span>
           best world class hotels
@@ -213,7 +213,7 @@
       </div>
 
       <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center mt-4">
-        <img src="{% static 'images/bgcover.jpg' %}" class="img-fluid myimage" alt="About Us" />
+        <img src="{{hotelimage.url}}" class="img-fluid myimage" alt="About Us" />
       </div>
     </div>
   </div>

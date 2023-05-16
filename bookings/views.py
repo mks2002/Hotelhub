@@ -247,6 +247,10 @@ def details(request):
             end = str(maindata.end)
             res = (dt.strptime(end, '%Y-%m-%d') - dt.strptime(start, '%Y-%m-%d')).days+1
             total_cost = res * maindata.current_cost * maindata.no_rooms
+            hotelname=maindata.hotelname
+            
+            hotelimage=Hotellist.objects.get(name=hotelname).image
+            print(hotelimage)
             data = {
                 'un': un,
                 'pw': password,
@@ -258,6 +262,7 @@ def details(request):
                 'bool': bool,
                 'order_id': detail_id,
                 'bool': bool,
+                'hotelimage':hotelimage,
             }
             return render(request, 'order_details.html', data)
 
@@ -351,11 +356,15 @@ def query(request, id):
             email=request.POST.get('email')
             contact=request.POST.get('contact')
             query=request.POST.get('query')
-            data=Query(username=name,useremail=email,contact_no=contact,querydetails=query)
-            data.save()
-            url = '/dashboard/{}'.format(id)
-            messages.info(request, 'your query is added successfully, we will resolve it soon, please wait for response !')
-            data = {'un': username, 'url': url, 'id': id}
-            return HttpResponseRedirect(url)
+            if len(contact) < 10 or not contact.isdigit():
+                messages.warning(request,'invailed contact number !!')
+                return render(request, 'queryForm.html', data)
+            else:
+                data=Query(username=name,useremail=email,contact_no=contact,querydetails=query)
+                data.save()
+                url = '/dashboard/{}'.format(id)
+                messages.info(request, 'your query is added successfully, we will resolve it soon, please wait for response !')
+                data = {'un': username, 'url': url, 'id': id}
+                return HttpResponseRedirect(url)
 
 
