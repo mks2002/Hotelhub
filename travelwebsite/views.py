@@ -87,7 +87,7 @@ def staffs(request, id=None):
 
 
 # this api key can be deleted in future so at that time this functionality will not work here if you search for a train name or place then you got information of that train from irctc website......
-@never_cache
+# @never_cache
 def travel(request, id=None):
     if id == None:
         data = {}

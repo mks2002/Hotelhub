@@ -42,9 +42,7 @@ def hotellist(request, hotelstate, id):
             if hotelstate == 'all':
                 data = Hotellist.objects.all().order_by('?')
             elif hotelstate == 'others':
-                data = Hotellist.objects.filter(
-                    state='gujrat'
-                ) | Hotellist.objects.filter(state='laddakh').order_by('?')
+                data = (Hotellist.objects.filter(state='gujrat' ) | Hotellist.objects.filter(state='laddakh')).order_by('?')
             else:
                 data = Hotellist.objects.filter(state=hotelstate).order_by('?')
             url = '/dashboard/{}'.format(id)
@@ -59,5 +57,9 @@ def hotellist(request, hotelstate, id):
                 'dn': dash_board_name,
                 'hstate': hotelstate,
             }
+            # print('-------------------------------------------------------------------------------------------')
+            # for d in data:
+            #     print(d.name )
+            # print('-------------------------------------------------------------------------------------------')
             return render(request, 'hotellist.html', datamain)
         return render(request, 'hotellist.html', datamain)

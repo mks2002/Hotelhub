@@ -8,10 +8,18 @@
       <div class="row ">
          <div class="col-sm-12 ">
             <div class="mydiv p-5 ">
-            
+            {% if bool == True %}
             <h2 class="  pb-3 fw-bold ">
                Are you sure you want to delete this order ?
             </h2>
+            {% else %}
+            <h2 class="  pb-3 fw-bold ">
+               Are you sure you want to delete this order, you have already paid for this   ?
+               <br>
+               <small>your 5 % amount will be deducted?</small>
+            </h2>
+            {% endif %}
+
                  <br>
                  
                   <a class="main-btn " href="delete/?id1={{orderid}}&session__id={{id}}">YES, Delete</a><br>
