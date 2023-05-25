@@ -1,7 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block style %}
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
 <style></style>
 
-{% endblock style %} 
+{% endblock style %}
 
 
 
@@ -9,7 +11,7 @@
 
 <section id="rooms" class="rooms_wrapper">
   <div class="container-fluid">
-    
+
     <div class="row">
       <div class="col-sm-12 section-title text-center mb-5">
         <h3>Here is the list of all services which we provide ..</h3>
@@ -41,11 +43,7 @@
 
       <div class="col-md-4 mb-4 mb-lg-0 my-4">
         <div class="room-item">
-          <img
-            src="{% static './images/room/room1.webp' %}"
-            alt=""
-            class="img-fluid g-0"
-          />
+          <img src="{% static './images/room/room1.webp' %}" alt="" class="img-fluid g-0" />
 
           <div class="room-item-wrap">
             <div class="room-content">
@@ -57,9 +55,11 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}"
-                >Book now</a
-              >
+              {% block btn1 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}">Book now</a>
+              {% endblock btn1 %}
+
+
             </div>
           </div>
         </div>
@@ -67,11 +67,7 @@
 
       <div class="col-md-4 mb-4 mb-lg-0 my-4">
         <div class="room-item">
-          <img
-            src="{% static './images/room/room2.webp' %}"
-            alt=""
-            class="img-fluid g-0"
-          />
+          <img src="{% static './images/room/room2.webp' %}" alt="" class="img-fluid g-0" />
 
           <div class="room-item-wrap">
             <div class="room-content">
@@ -83,9 +79,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}"
-                >Book now</a
-              >
+              {% block btn2 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}">Book now</a>
+              {% endblock btn2 %}
             </div>
           </div>
         </div>
@@ -93,11 +89,7 @@
 
       <div class="col-md-4 mb-4 mb-lg-0 my-4">
         <div class="room-item">
-          <img
-            src="{% static './images/room/room3.webp' %}"
-            alt=""
-            class="img-fluid g-0"
-          />
+          <img src="{% static './images/room/room3.webp' %}" alt="" class="img-fluid g-0" />
 
           <div class="room-item-wrap">
             <div class="room-content">
@@ -109,9 +101,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}"
-                >Book now</a
-              >
+              {% block btn3 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}">Book now</a>
+              {% endblock btn3 %}
             </div>
           </div>
         </div>
@@ -143,11 +135,7 @@
     <div class="row m-0 py-4">
       <div class="col-md-4 mb-4 mb-lg-0 my-4">
         <div class="room-item">
-          <img
-            src="{% static './images/h2.jpg' %}"
-            alt=""
-            class="img-fluid g-0"
-          />
+          <img src="{% static './images/h2.jpg' %}" alt="" class="img-fluid g-0" />
 
           <div class="room-item-wrap">
             <div class="room-content">
@@ -159,9 +147,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}"
-                >Book now</a
-              >
+              {% block btn4 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}">Book now</a>
+              {% endblock btn4 %}
             </div>
           </div>
         </div>
@@ -180,9 +168,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}"
-                >Book now</a
-              >
+              {% block btn5 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}">Book now</a>
+              {% endblock btn5 %}
             </div>
           </div>
         </div>
@@ -190,11 +178,7 @@
 
       <div class="col-md-4 mb-4 mb-lg-0 my-4">
         <div class="room-item">
-          <img
-            src="{% static './images/room/room3.webp' %}"
-            alt=""
-            class="img-fluid"
-          />
+          <img src="{% static './images/room/room3.webp' %}" alt="" class="img-fluid" />
           <div class="room-item-wrap">
             <div class="room-content">
               <h5 class="text-white mb-lg-5 text-decoration-underline">
@@ -205,9 +189,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}"
-                >Book now</a
-              >
+              {% block btn6 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'login'%}">Book now</a>
+              {% endblock btn6 %}
             </div>
           </div>
         </div>
@@ -235,11 +219,7 @@
     <div class="row m-0 py-3">
       <div class="col-md-4 mb-4 mb-lg-0 my-4">
         <div class="room-item">
-          <img
-            src="{% static './images/t1.jfif' %}"
-            alt=""
-            class="img-fluid g-0"
-          />
+          <img src="{% static './images/t1.jfif' %}" alt="" class="img-fluid g-0" />
 
           <div class="room-item-wrap">
             <div class="room-content">
@@ -251,9 +231,11 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'travel'%}"
-                >Book now</a
-              >
+              {% block btn7 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'travel'%}">Book now</a>
+              {% endblock btn7 %}
+
+
             </div>
           </div>
         </div>
@@ -272,9 +254,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'travel'%}"
-                >Book now</a
-              >
+              {% block btn8 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'travel'%}">Book now</a>
+              {% endblock btn8 %}
             </div>
           </div>
         </div>
@@ -293,9 +275,9 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
-              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'travel'%}"
-                >Book now</a
-              >
+              {% block btn9 %}
+              <a class="main-btn border-white text-white mt-lg-5" href="{% url 'travel'%}">Book now</a>
+              {% endblock btn9 %}
             </div>
           </div>
         </div>
@@ -303,113 +285,15 @@
     </div>
   </div>
 </section>
-<hr class="container" />
-<section id="price" class="price_wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 section-title text-center mb-5">
-        <h6>Best & Affordable Price for you</h6>
-        <h3>Our Pricing</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card p-4 text-center rounded-3">
-          <h5 class="text-decoration-underline mb-4">Economic</h5>
-          <ul class="list-unstyled">
-            <li>
-              <p>Flight Ticket(2)</p>
-            </li>
-            <li>
-              <p>Music Concert (30% Off)</p>
-            </li>
-            <li>
-              <p>Restaurant (Snacks)</p>
-            </li>
-            <li>
-              <p>Face Make(No)</p>
-            </li>
-          </ul>
-          <hr />
-          <h3>$100<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
-          <a href="#" class="main-btn">Sign Up</a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card p-4 text-center rounded-3">
-          <h5 class="text-decoration-underline mb-4">buisness</h5>
-          <ul class="list-unstyled">
-            <li>
-              <p>Flight Ticket(2)</p>
-            </li>
-            <li>
-              <p>Music Concert (30% Off)</p>
-            </li>
-            <li>
-              <p>Restaurant (Snacks)</p>
-            </li>
-            <li>
-              <p>Face Make(No)</p>
-            </li>
-          </ul>
-          <hr />
-          <h3>$140<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
-          <a href="#" class="main-btn">Sign Up</a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card p-4 text-center rounded-3">
-          <h5 class="text-decoration-underline mb-4">Commercial</h5>
-          <ul class="list-unstyled">
-            <li>
-              <p>Flight Ticket(2)</p>
-            </li>
-            <li>
-              <p>Music Concert (30% Off)</p>
-            </li>
-            <li>
-              <p>Restaurant (Snacks)</p>
-            </li>
-            <li>
-              <p>Face Make(No)</p>
-            </li>
-          </ul>
-          <hr />
-          <h3>$130<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
-          <a href="#" class="main-btn">Sign Up</a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card p-4 text-center rounded-3">
-          <h5 class="text-decoration-underline mb-4">luxury special</h5>
-          <ul class="list-unstyled">
-            <li>
-              <p>Flight Ticket(2)</p>
-            </li>
-            <li>
-              <p>Music Concert (30% Off)</p>
-            </li>
-            <li>
-              <p>Restaurant (Snacks)</p>
-            </li>
-            <li>
-              <p>Face Make(No)</p>
-            </li>
-          </ul>
-          <hr />
-          <h3><del>$270</del>$150<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
-          <a href="#" class="main-btn">Sign Up</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<hr class="container-fluid" />
+
+
 
 {% endblock content1 %}
 
 
 {% block javascript_files %}
-    
+
 <script src="{% static 'js/main2.js' %}"></script>
 
 {% endblock javascript_files %}

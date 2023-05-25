@@ -23,3 +23,6 @@ updating the version of pip ----> using above 2 commands....
 
 django paypal --> require pytz package..
 requests module --> require idna charset-normalizer ..
+
+
+whenever we have to work on virtualenv then we have to use command prompt instead of powershell to check know whether we are working on virtual enviourment or not..

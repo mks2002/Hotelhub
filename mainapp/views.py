@@ -68,27 +68,31 @@ def login(request):
     if request.method == 'POST':
         un = request.POST.get('name')
         pw = request.POST.get('password')
-
-        try:
-            user = Login.objects.get(username=un)
-        except Login.DoesNotExist:
-            user = None
-
-        if user is not None and check_password(pw, user.password):
-            hl = 'all'
-            request.session['user_{}_uname'.format(user.id)] = user.username
-            request.session['user_{}_uemail'.format(user.id)] = user.email
-            request.session['user_{}_upass'.format(user.id)] = user.password
-            id = user.id
-            url = '/hotellist/{}/{}'.format(hl, id)
-            messages.success(
-                request,
-                f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !',
-            )
-            return HttpResponseRedirect(url)
-        else:
-            messages.error(request, 'you are not registered create account to login !')
+        
+        if un =='' or pw=='':
+            messages.error(request,'all fields are required !')
             return render(request, 'login.html')
+        else:
+            try:
+                user = Login.objects.get(username=un)
+            except Login.DoesNotExist:
+                user = None
+
+            if user is not None and check_password(pw, user.password):
+                hl = 'all'
+                request.session['user_{}_uname'.format(user.id)] = user.username
+                request.session['user_{}_uemail'.format(user.id)] = user.email
+                request.session['user_{}_upass'.format(user.id)] = user.password
+                id = user.id
+                url = '/hotellist/{}/{}'.format(hl, id)
+                messages.success(
+                    request,
+                    f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !',
+                )
+                return HttpResponseRedirect(url)
+            else:
+                messages.error(request, 'you are not registered create account to login !')
+                return render(request, 'login.html')
 
     if request.method == 'GET':
         messages.warning(request, 'for booking you need to login first !')

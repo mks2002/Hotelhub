@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
- {% load static %}
+{% load static %}
 
 
 
@@ -113,9 +113,11 @@
       </div>
 
       <div class="col-lg mb-3 mb-lg-0">
+        {% block button1 %}
         <button type="submit" class="main-btn rounded-2 px-lg-3">
           <a href="{% url 'travel' %}"> Check avialibility.</a>
         </button>
+        {% endblock button1 %}
       </div>
     </div>
   </div>
@@ -143,8 +145,12 @@
           sure key information such as rooms and rates, amenities, contact
           details and online bookings are never more than a single click away.
         </p>
-
+        {% block button2 %}
         <a href="{% url 'about' %}" class="main-btn mt-4">Read more</a>
+
+        {% endblock %}
+
+
       </div>
 
       <div class="col-lg-6 mb-4 mb-lg-0 ps-lg-4 text-center">
@@ -181,7 +187,13 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
+
+              {% block button3 %}
               <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}">Book now</a>
+              {% endblock button3 %}
+
+
+
             </div>
           </div>
         </div>
@@ -200,7 +212,10 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
+              {% block button4 %}
               <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}">Book now</a>
+              {% endblock button4 %}
+
             </div>
           </div>
         </div>
@@ -219,7 +234,12 @@
                 that are destined to be worn and loved immediately
               </p>
               <p class="text-white fw-bold mt-lg-4">$220 / Per Night</p>
+              {% block button5 %}
               <a class="main-btn border-white text-white mt-lg-5" href="{% url 'service'%}">Book now</a>
+
+              {% endblock button5 %}
+
+
             </div>
           </div>
         </div>
@@ -228,7 +248,12 @@
 
     <div class="row">
       <div class="col-sm-12 mycenter">
+        {% block btn6 %}
         <a href="{% url 'service' %}" class="main-btn mt-2">View all services</a>
+        {% endblock btn6 %}
+
+
+
       </div>
     </div>
   </div>
@@ -464,7 +489,12 @@
     </div>
     <div class="row">
       <div class="col-sm-12 mycenter">
+        {% block btn7 %}
         <a href="{% url 'staffs'%}" class="main-btn mt-2">View all staffs and team members</a>
+
+        {% endblock btn7 %}
+
+
       </div>
     </div>
   </div>
@@ -545,7 +575,12 @@
           </ul>
           <hr />
           <h3>$100<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
+          {% block btn8 %}
           <a href="{% url 'signup'%}" class="main-btn">Sign Up</a>
+          {% endblock btn8 %}
+
+
+
         </div>
       </div>
       <div class="col-lg-3 col-md-6 mb-4">
@@ -567,7 +602,9 @@
           </ul>
           <hr />
           <h3>$140<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
+          {% block btn9 %}
           <a href="{% url 'signup'%}" class="main-btn">Sign Up</a>
+          {% endblock btn9 %}
         </div>
       </div>
       <div class="col-lg-3 col-md-6 mb-4">
@@ -589,7 +626,9 @@
           </ul>
           <hr />
           <h3>$130<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
+          {% block btn10 %}
           <a href="{% url 'signup'%}" class="main-btn">Sign Up</a>
+          {% endblock btn10 %}
         </div>
       </div>
       <div class="col-lg-3 col-md-6 mb-4">
@@ -611,7 +650,9 @@
           </ul>
           <hr />
           <h3><del>$270</del>$150<sub class="fs-6 fw-normal">/NIGHT</sub></h3>
+          {% block btn11 %}
           <a href="{% url 'signup'%}" class="main-btn">Sign Up</a>
+          {% endblock btn11 %}
         </div>
       </div>
     </div>
@@ -642,7 +683,12 @@
             Posts are typically displayed in reverse chronological order so that
             the most recent post appears first, at the top of the web page.
           </p>
+          {% block btn12 %}
           <a href="{% url 'blog'%}" class="main-btn mt-2">Read More</a>
+          {% endblock btn12 %}
+
+
+
         </div>
       </div>
     </div>
@@ -657,7 +703,9 @@
             Posts are typically displayed in reverse chronological order so that
             the most recent post appears first, at the top of the web page.
           </p>
+          {% block btn13 %}
           <a href="{% url 'blog'%}" class="main-btn mt-2">Read More</a>
+          {% endblock btn13 %}
         </div>
       </div>
     </div>
@@ -665,7 +713,10 @@
 
   <div class="row">
     <div class="col-sm-12 mycenter">
+      {% block btn14 %}
       <a href="{% url 'blog'%}" class="main-btn mt-2">Read More blogs</a>
+      {% endblock btn14 %}
+
     </div>
   </div>
 </div>
