@@ -31,6 +31,7 @@ from django.contrib.auth.hashers import make_password, check_password
 
 
 # this is the same signup page using messages freamework..
+@never_cache
 def signup(request):
     if request.method == 'POST':
         un = request.POST.get('name')
@@ -39,28 +40,39 @@ def signup(request):
         cpw = request.POST.get('cpassword')
 
         if pw != cpw:
-            messages.error(request, 'password and confirm password must be same !')
+            messages.error( request, 'password and confirm password must be same !')
+            return render(request, 'signup.html')
 
         elif len(pw) < 8:
             messages.warning(request, 'password length must be of 8 digit !')
+            return render(request, 'signup.html')
+
         else:
             if (
                 Login.objects.filter(username=un).exists()
                 | Login.objects.filter(email=email).exists()
             ):
-                messages.warning(
-                    request, 'username or email already exist select another !'
-                )
+                messages.warning(  request, 'username or email already exist select another !' )
+                return render(request, 'signup.html')
             else:
                 pw = make_password(pw)
                 maindata = Login(username=un, email=email, password=pw)
                 maindata.save()
-                messages.success(
-                    request, 'you have registered succesfully, now you can login !'
-                )
+                messages.success( request, 'you have registered succesfully, now you can login !' )
                 url = '/login/'
                 return HttpResponseRedirect(url)
-    return render(request, 'signup.html')
+
+    if request.method == 'GET':
+        if request.session.get('user_id'):
+            id = request.session['user_id']
+            hl = 'all'
+            url = '/hotellist/{}/{}'.format(hl, id)
+            messages.info(
+                request, 'you are already logged in so you cant access signup page, you need to log out for accessing this page !')
+            return HttpResponseRedirect(url)
+        else:
+            messages.info(request, 'Here you can open your new account !')
+            return render(request, 'signup.html')
 
 
 @never_cache
@@ -68,9 +80,9 @@ def login(request):
     if request.method == 'POST':
         un = request.POST.get('name')
         pw = request.POST.get('password')
-        
-        if un =='' or pw=='':
-            messages.error(request,'all fields are required !')
+
+        if un == '' or pw == '':
+            messages.error(request, 'all fields are required !')
             return render(request, 'login.html')
         else:
             try:
@@ -80,23 +92,34 @@ def login(request):
 
             if user is not None and check_password(pw, user.password):
                 hl = 'all'
-                request.session['user_{}_uname'.format(user.id)] = user.username
+                request.session['user_{}_uname'.format(
+                    user.id)] = user.username
                 request.session['user_{}_uemail'.format(user.id)] = user.email
-                request.session['user_{}_upass'.format(user.id)] = user.password
+                request.session['user_{}_upass'.format(
+                    user.id)] = user.password
                 id = user.id
+                request.session['user_id'] = id
                 url = '/hotellist/{}/{}'.format(hl, id)
                 messages.success(
-                    request,
-                    f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !',
-                )
+                    request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
                 return HttpResponseRedirect(url)
             else:
-                messages.error(request, 'you are not registered create account to login !')
+                messages.error(
+                    request, 'you are not registered create account to login !')
                 return render(request, 'login.html')
 
     if request.method == 'GET':
-        messages.warning(request, 'for booking you need to login first !')
-        return render(request, 'login.html')
+        # User is already logged in, redirect to hotellist page
+        if request.session.get('user_id'):
+            id = request.session['user_id']
+            hl = 'all'
+            url = '/hotellist/{}/{}'.format(hl, id)
+            messages.info(
+                request, 'you are already logged in so you cant access login page, you need to log out for accessing this page !')
+            return HttpResponseRedirect(url)
+        else:
+            messages.warning(request, 'for booking you need to login first !')
+            return render(request, 'login.html')
 
 
 # first delete all the sessions using del command...
@@ -155,7 +178,8 @@ def update(request):
                     )
                 else:
                     updatedpassword = make_password(new)
-                    Login.objects.filter(username=name).update(password=updatedpassword)
+                    Login.objects.filter(username=name).update(
+                        password=updatedpassword)
                     # when we update the password we have to update it in the Bookinghotel and payment table also othewise data is not properly displayed...
                     Bookinghotel.objects.filter(username=name).update(
                         userpassword=updatedpassword
@@ -170,7 +194,8 @@ def update(request):
                     url = '/login/'
                     return HttpResponseRedirect(url)
             else:
-                messages.error(request, 'password and confirm password must be same !')
+                messages.error(
+                    request, 'password and confirm password must be same !')
         else:
             messages.error(
                 request, 'No such account is exist pls enter a valid username !'
@@ -179,3 +204,5 @@ def update(request):
 
 
 # we can also create one update password after the login .....
+
+# now after implement this login page prevention after a user is already logged in this is a single user sign in system for a particular browser but that is not a issue because many big websites like youtube gmail etc they are also follow the same ...

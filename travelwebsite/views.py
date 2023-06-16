@@ -34,7 +34,6 @@ def homepage(request, id=None):
             return HttpResponseRedirect('/')
 
 
-
 @never_cache
 def about(request, id=None):
     if id == None:
@@ -103,7 +102,8 @@ def travel(request, id=None):
                     'X-RapidAPI-Host': 'trains.p.rapidapi.com',
                 }
 
-                response = requests.request('POST', url, json=payload, headers=headers)
+                response = requests.request(
+                    'POST', url, json=payload, headers=headers)
                 datamain = response.json()
                 data = {'datamain': datamain}
                 # print(datamain)

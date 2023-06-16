@@ -17,9 +17,9 @@ from userreview import views as v5
 from payments import views as v6
 
 
-admin.site.site_header = "Hotel administration and managment"
-admin.site.site_title = "Hotel administration and managment"
-admin.site.index_title = "Hotel administration and managment"
+admin.site.site_header = 'Hotel administration and managment'
+admin.site.site_title = 'Hotel administration and managment'
+admin.site.index_title = 'Hotel administration and managment'
 
 
 # for error page we dont create any url we just render it when any of the requested url is not match with this below defined error.....
