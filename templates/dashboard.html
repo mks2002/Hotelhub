@@ -129,7 +129,7 @@
               {% for p in maindata %}
               <tr>
                 <th scope="row">{{forloop.counter}}</th>
-                <td>{{p.firstname}} {{p.lastname}}</td>
+                <td>{{p.firstname|capfirst}} {{p.lastname |capfirst}}</td>
 
                 <td>{{p.contact_no}}</td>
                 <td><b> {{p.payment_status |upper}}</b></td>

@@ -36,6 +36,8 @@ QUERY_CHOICE = (
 )
 
 
+
+# in query if we want we can add the password field of current logged in user but that is not important because email and usernames are also unique.....
 class Query(models.Model):
     username = models.CharField(max_length=50)
     useremail = models.EmailField(max_length=50)

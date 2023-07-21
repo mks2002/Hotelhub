@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %} {% block style %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block style %}
 <style>
   * {
     padding: 0;
@@ -51,15 +53,14 @@
   }
 </style>
 
-{% endblock style %}
-
+{% endblock style %} 
 
 {% block navlogo %}
 <a class="navbar-brand" href="{% url 'home' id %}">
   <img src="{% static './images/logo.png' %}" class="img-fluid" alt="logo" />
 </a>
 
-{% endblock navlogo %}
+{% endblock navlogo %} 
 
 {% block navbar %}
 
@@ -67,7 +68,6 @@
   <a class="nav-link {% if request.path == '/'|add:id %}active {% endif %}" aria-current="page"
     href="{% url 'home' id %}">Home</a>
 </li>
-
 
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/about/'|add:id %}active {% endif %}" href="{% url 'about' id%}">About</a>
@@ -78,42 +78,35 @@
     href="{% url 'service' id %}">Services</a>
 </li>
 
-
-
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/staffs/'|add:id %}active {% endif %}"
     href="{% url 'staffs' id%}">Staffs</a>
 </li>
 
-
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/blogs/'|add:id %}active {% endif %}" href="{% url 'blog' id%}">Blogs</a>
 </li>
-
-
 
 <li class="nav-item">
   <a class="nav-link {% if request.path == '/travel_details/'|add:id %}active {% endif %}"
     href="{% url 'travel' id%}">Traindetails</a>
 </li>
 
-
 <li class="nav-item">
-
-  <a class="{% if request.path == '/hotellist/all/'|add:id  or request.path == '/hotellist/goa/'|add:id or request.path == '/hotellist/kerala/'|add:id or request.path == '/hotellist/jammu kashmir/'|add:id or request.path == '/hotellist/Rajasthan/'|add:id or request.path == '/hotellist/Himachal pradesh/'|add:id or request.path == '/hotellist/others/'|add:id  %}active{% endif %} nav-link "
+  <a class="{% if request.path == '/hotellist/all/'|add:id or request.path == '/hotellist/goa/'|add:id or request.path == '/hotellist/kerala/'|add:id or request.path == '/hotellist/jammu kashmir/'|add:id or request.path == '/hotellist/Rajasthan/'|add:id or request.path == '/hotellist/Himachal pradesh/'|add:id or request.path == '/hotellist/others/'|add:id %}active{% endif %} nav-link"
     href="{% url 'hotellist' 'all' id %}">Hotels & resorts</a>
 </li>
 
 <li class="nav-item">
-  <a class="nav-link " href="{% url 'logout' id %}">Logout</a>
+  <a class="nav-link" href="{% url 'logout' id %}">Logout</a>
 </li>
 
 <li class="nav-item mt-3 mt-lg-0">
-
   <a href="{{url}}" class="main-btn {% if request.path == '/dashboard/'|add:id %}active {% endif %}">Dashboard</a>
 </li>
 
-{% endblock navbar %}
+{% endblock navbar %} 
+
 
 {% block content1 %}
 
@@ -130,18 +123,16 @@
           <h4>Pay Your Amounts online</h4>
 
           <div class="container">
-            {% if messages %}
-            {% for message in messages %}
+            {% if messages %} {% for message in messages %}
 
             <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
               <strong>{{ message }}</strong>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
-            {% endfor %}
-            {% endif %}
-
-
+            {% endfor %} {% endif %} {% comment %} I have to submit this form in
+            the same endpoint where this page is render so we dont need to
+            mention action attribute in the form .... {% endcomment %}
             <form method="post" id="myform">
               {% csrf_token %}
 
@@ -152,24 +143,18 @@
                       class="form-control my-3 p-2" />
                     <input type="text" placeholder="Password" name="password" value="{{pw}}" required
                       class="form-control my-3 p-2" />
-                    <input type="number" placeholder="order_no" value="{{oid}}" name="order_no">
-
+                    <input type="number" placeholder="order_no" value="{{oid}}" name="order_no" />
                   </div>
-
                 </div>
-
-
               </div>
 
               <div class="form-row">
                 <div class="col-lg-12">
                   <label for="cost">Total amount</label>
                   <input type="number" id="cost" placeholder="totla_cost" name="total_cost" value="{{cost}}"
-                    class="form-control my-3 p-2" readonly required>
-
+                    class="form-control my-3 p-2" readonly required />
                 </div>
               </div>
-
 
               <div class="form-row">
                 <div class="col-lg-12">
@@ -177,23 +162,17 @@
                   <input type="email" name="email" id="email" placeholder="Email-Address" required readonly
                     value="{{uemail}}" class="form-control my-3 p-2" />
                 </div>
-
               </div>
-
-
             </form>
-
             <div id="paypal-button-container"></div>
           </div>
         </div>
-
-
       </div>
     </div>
   </section>
 </div>
 
-{% endblock content1 %}
+{% endblock content1 %} 
 
 {% block javascript_files %}
 <script src="{% static 'js/main2.js' %}"></script>
@@ -203,28 +182,31 @@
   src="https://www.paypal.com/sdk/js?client-id=AQtYrsDFUxt0amywwH1i73JsDvWf2CBc_F1aiLs-k0o9NApKL9Ir4BhG3twUxtlMphyFbUdRdr_xZ7oG&currency=USD"></script>
 
 <script>
+  paypal
+    .Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: "{{cost}}",
+              },
+            },
+          ],
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          // if we use the first option then firstbuyer print the alert but in the second option the username print in the alert ....
+          //  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          alert("Transaction completed by " + "{{un}}" + "!");
 
-  paypal.Buttons({
-    createOrder: function (data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: '{{cost}}'
-          }
-        }]
-      });
-    },
-    onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {
-
-        alert('Transaction completed by ' + details.payer.name.given_name + '!');
-        // we have to submit the frontend form on successfully completion of payment....
-        document.getElementById("myform").submit()
-      });
-    }
-
-
-  }).render('#paypal-button-container');
+          // we have to submit the frontend form on successfully completion of payment....
+          document.getElementById("myform").submit();
+        });
+      },
+    })
+    .render("#paypal-button-container");
 </script>
 
 {% endblock javascript_files %}

@@ -11,6 +11,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 
+
+
 # datetime module is used for deal with dates..
 from datetime import datetime as dt
 
@@ -92,16 +94,13 @@ def login(request):
 
             if user is not None and check_password(pw, user.password):
                 hl = 'all'
-                request.session['user_{}_uname'.format(
-                    user.id)] = user.username
+                request.session['user_{}_uname'.format( user.id)] = user.username
                 request.session['user_{}_uemail'.format(user.id)] = user.email
-                request.session['user_{}_upass'.format(
-                    user.id)] = user.password
+                request.session['user_{}_upass'.format( user.id)] = user.password
                 id = user.id
                 request.session['user_id'] = id
                 url = '/hotellist/{}/{}'.format(hl, id)
-                messages.success(
-                    request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
+                messages.success(  request, f'welcome mr. {user.username} you are successfully logged in, now you can do your bookings !')
                 return HttpResponseRedirect(url)
             else:
                 messages.error(

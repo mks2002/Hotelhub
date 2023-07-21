@@ -49,15 +49,7 @@ def paymentpage(request):
                 email = maindata.useremail
                 pw = maindata.userpassword
                 url = '/dashboard/{}'.format(id)
-                data = {
-                    'id': id,
-                    'url': url,
-                    'un': un,
-                    'uemail': email,
-                    'pw': pw,
-                    'cost': cost,
-                    'oid': oid,
-                }
+                data = {'id': id,'url': url,'un': un,'uemail': email,'pw': pw,'cost': cost,'oid': oid,}
                 return render(request, 'payment.html', data)
 
         try:

@@ -47,11 +47,9 @@ def bookings(request, id):
             hstate1 = request.GET.get('hstate')
             hcost1 = request.GET.get('hcost')
             image = request.GET.get('image_url')
+
             if any(val is None for val in [hname1, hcity1, hstate1, hcost1, image]):
-                messages.error(
-                    request,
-                    'Invailed url the page you are looking for is not available...',
-                )
+                messages.error( request, 'Invailed url the page you are looking for is not available...',  )
                 url = f'/dashboard/{id}'
                 data1 = {'id': id, 'url': url}
                 return render(request, 'error_page.html', data1)
@@ -70,10 +68,7 @@ def bookings(request, id):
                              'hstate1':hstate1, 'hcost1': hcost1, 'url': url, 'id': id, 'image': image, }
                     return render(request, 'booking.html', data1)
                 else:
-                    messages.error(
-                        request,
-                        'Invailed url the page you are looking for is not available...',
-                    )
+                    messages.error( request,   'Invailed url the page you are looking for is not available...', )
                     url = f'/dashboard/{id}'
                     data1 = {'id': id, 'url': url}
                     return render(request, 'error_page.html', data1)
@@ -157,9 +152,7 @@ def dashboard(request, id):
         useremail = request.session['user_{}_uemail'.format(id)]
         password = request.session['user_{}_upass'.format(id)]
 
-        tabel = Bookinghotel.objects.filter(
-            username=username, userpassword=password
-        )
+        tabel = Bookinghotel.objects.filter(  username=username, userpassword=password,useremail=useremail, )
         queries = Query.objects.filter(username=username, useremail=useremail)
         # print(queries)
         print(tabel)
@@ -200,6 +193,7 @@ def details(request):
     ):
         data = {}
         if request.method == 'GET':
+            # id1 is the order id and the session id is the id corresponding logged in user....
             id = request.GET.get('session__id')
             detail_id = request.GET.get('id1')
 
@@ -212,9 +206,7 @@ def details(request):
             try:
                 maindata = Bookinghotel.objects.get(id=detail_id)
             except ObjectDoesNotExist:
-                messages.error(
-                    request, 'the page you currrently looking for is not available..'
-                )
+                messages.error( request, 'the page you currrently looking for is not available..' )
                 data1 = {'id': id, 'url': url}
                 return render(request, 'error_page.html', data1)
 
@@ -222,17 +214,17 @@ def details(request):
             bool = maindata.payment_status.lower() == 'unpaid'
             start = str(maindata.start)
             end = str(maindata.end)
-            res = (dt.strptime(end, '%Y-%m-%d') -
-                   dt.strptime(start, '%Y-%m-%d')).days+1
+            res = (dt.strptime(end, '%Y-%m-%d') - dt.strptime(start, '%Y-%m-%d')).days+1
             total_cost = res * maindata.current_cost * maindata.no_rooms
             hotelname = maindata.hotelname
 
             hotelimage = Hotellist.objects.get(name=hotelname).image
             print(hotelimage)
-            data = { 'un': un, 'pw': password, 'uemail': uemail, 'maindata': maindata, 'url': url, 'cost': total_cost, 'id': id,   'bool': bool, 'order_id': detail_id, 'bool': bool, 'hotelimage': hotelimage, }
+            data = { 'un': un, 'pw': password, 'uemail': uemail, 'maindata': maindata, 'url': url, 'cost': total_cost, 
+                    'id':   id, 'bool': bool, 'order_id': detail_id, 'bool': bool, 'hotelimage': hotelimage, }
             return render(request, 'order_details.html', data)
 
-        return render(request, 'order_details.html', data)
+        # return render(request, 'order_details.html', data)
 
 
 # in each page context we have to pass the id value because it is the session key variable so we use this so that we can check if someone is logged in or logged out ...
@@ -256,8 +248,7 @@ def delete_confirmation(request):
             data = {'id': id, 'orderid': orderid, 'url': url,'bool':bool}
             return render(request, 'delete_confirmation.html', data)
         else:
-            messages.error(
-                request, 'the page you currrently looking for is not available..')
+            messages.error( request, 'the page you currrently looking for is not available..')
             data1 = {'id': id, 'url': url}
             return render(request, 'error_page.html', data1)
             # return HttpResponseRedirect(url)
@@ -276,20 +267,11 @@ def delete(request):
     ):
         id1 = request.GET.get('id1')
         id = request.GET.get('session__id')
-        customer_name = (
-            Bookinghotel.objects.get(id=id1).firstname
-            + ' '
-            + Bookinghotel.objects.get(id=id1).lastname
-        )
+        customer_name = ( Bookinghotel.objects.get(id=id1).firstname + ' ' + Bookinghotel.objects.get(id=id1).lastname )
         Bookinghotel.objects.filter(id=id1).delete()
         Paymentdetail.objects.filter(order_no=id1).delete()
         url = '/dashboard/{}'.format(id)
-        messages.info(
-            request,
-            'your order for mr. {} has been deleted successfully !'.format(
-                customer_name
-            ),
-        )
+        messages.info( request,'your order for mr. {} has been deleted successfully !'.format( customer_name ),)
         return HttpResponseRedirect(url)
     else:
         return HttpResponseRedirect('/login/')
@@ -321,14 +303,14 @@ def query(request, id):
         if request.method == 'POST':
             name = request.POST.get('username')
             email = request.POST.get('email')
+            # the name and email are hidden form field which containst the current logged in users details....
             contact = request.POST.get('contact')
             query = request.POST.get('query')
             if len(contact) < 10 or not contact.isdigit():
                 messages.warning(request, 'invailed contact number !!')
                 return render(request, 'queryForm.html', data)
             else:
-                data = Query(username=name, useremail=email,
-                             contact_no=contact, querydetails=query)
+                data = Query(username=name, useremail=email,contact_no=contact, querydetails=query)
                 data.save()
                 url = '/dashboard/{}'.format(id)
                 messages.info(
