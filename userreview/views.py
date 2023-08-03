@@ -98,3 +98,10 @@ def memory(request, id):
             messages.success(request, 'your memory is added successfully that is visible in our blog page !')
             data = {'un': username, 'url': url, 'id': id}
             return HttpResponseRedirect(url)
+        
+
+
+
+
+
+        

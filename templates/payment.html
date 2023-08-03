@@ -123,16 +123,22 @@
           <h4>Pay Your Amounts online</h4>
 
           <div class="container">
-            {% if messages %} {% for message in messages %}
+            {% if messages %}
+             {% for message in messages %}
 
             <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
               <strong>{{ message }}</strong>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
-            {% endfor %} {% endif %} {% comment %} I have to submit this form in
+            {% endfor %}
+             {% endif %}
+             
+            {% comment %} 
+            I have to submit this form in
             the same endpoint where this page is render so we dont need to
-            mention action attribute in the form .... {% endcomment %}
+            mention action attribute in the form .... 
+            {% endcomment %}
             <form method="post" id="myform">
               {% csrf_token %}
 
