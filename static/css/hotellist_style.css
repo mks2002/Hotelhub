@@ -5,10 +5,11 @@
 
 .explore-travel .card {
    border: none;
+   padding-bottom: 1%;
    border-right-color: transparent;
    border-radius: 0.9375rem;
    text-align: start;
-   height: 78vh;
+   height: 73vh;
    background-color: white;
    width: 30vw;
    position: relative;
