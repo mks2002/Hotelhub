@@ -144,7 +144,7 @@
 
           <div class="search">
             <i class="fa fa-search"></i>
-            <input type="text" id="searchTxt" class="form-control"
+            <input type="search" id="searchTxt" class="form-control" 
               placeholder="Search your favourate hotel by name, city, state or cost/night">
             <button class="btn btn-primary">Search</button>
           </div>
@@ -155,7 +155,8 @@
     </div>
 
     <hr class="container-fluid mt-0 mb-5" />
-
+     
+    <div class="row my-1" id="searchResults"></div>
 
     <div class="row m-0 " id="mylist">
       {% comment %} from here we start the card section ... {% endcomment %}
@@ -209,10 +210,8 @@
     </div>
 
 
-    <hr class="container-fluid" />
+    <hr class="container-fluid mt-2" />
 
-
-    <hr class="container mt-2" />
 
     <div class="container text-center pt-3">
       <div class="section-title my-2 text-center">
@@ -256,6 +255,7 @@
         element.parentElement.style.display = "none";
       }
     })
+    // this function will count how many cards having display not none i.e. they are visible ...
     populate()
   })
 
@@ -265,21 +265,25 @@
     let noteCards = document.getElementsByClassName('noteCard');
     let displayCount = 0;
 
+    let searchResults = document.getElementById('searchResults');
+
     Array.from(noteCards).forEach(function (element) {
       if (element.parentElement.style.display !== "none") {
         displayCount++;
       }
     });
+
     // this comment is print for frontend search .....
-    if (displayCount === 0) {
-      elem.innerHTML = '<h3 class="text-center">Sorry no such hotel is available...</h3>';
-      elem.style.display = 'block';
+    if (displayCount == 0) {
+      searchResults.innerHTML = '<h3 class="text-center w">Sorry no such hotel is available...</h3>';
+      searchResults.style.display = 'block';
+    }else{
+      searchResults.innerHTML='';
+      searchResults.style.display='none';
     }
 
  
   }
-
-
 
 </script>
 
