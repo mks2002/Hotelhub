@@ -1,5 +1,5 @@
 
-# Online Hotel Booking Website
+# Hotelhub - Online Hotel Booking Website
 
 Welcome to the Online Hotel Booking Website, a project built with Python, Django, and the Request module.
 
